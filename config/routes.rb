@@ -12,5 +12,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "recipes#index"
+    get "customers/unsubscribe"
+    patch "customers/withdraw"
+    resources :customers, only: [:edit, :update]
   end
 end
