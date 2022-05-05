@@ -6,15 +6,39 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <% if customer_signed_in? %>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <a class="navbar-brand" href="/"><strong>Bodymakeキッチン</strong><i class="fas fa-dumbbell"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <% if customer_signed_in? %>
+            <li class="nav-item active">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <% else %>
+            <li class="nav-item active">
+              <%= link_to new_customer_session_path, class: "nav-link" do %>
+                <i class="fas fa-sign-in"></i> ログイン
+              <% end %>
+            </li>
+            <li class="nav-item active">
+              <%= link_to "ユーザー登録(無料)", new_customer_registration_path, class: "nav-link" %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>
