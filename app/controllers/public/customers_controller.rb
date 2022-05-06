@@ -4,8 +4,8 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    @customer = Customer.find(params[:id])
-    @customer.update(customer_params)
+    customer = Customer.find(params[:id])
+    customer.update(customer_params)
     redirect_to root_path
   end
 
