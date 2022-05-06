@@ -19,5 +19,6 @@ Rails.application.routes.draw do
     get "customers/unsubscribe"
     patch "customers/withdraw"
     resources :customers, only: [:edit, :update]
+    resources :recipes, only: [:new, :create]
   end
 end
