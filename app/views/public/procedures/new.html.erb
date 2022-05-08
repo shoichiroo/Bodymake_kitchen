@@ -18,7 +18,7 @@
 
       <% @procedures.each do |procedure| %>
         <p><%= procedure.description %></p>
-        <p><%= link_to "削除", recipe_procedure_path(params[:recipe_id], procedure), method: :delete %></p>
+        <p><%= link_to "削除", recipe_procedure_path(params[:recipe_id], procedure), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
       <% end %>
 
       <%= link_to "レシピを投稿する", recipe_path(params[:recipe_id]), class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>

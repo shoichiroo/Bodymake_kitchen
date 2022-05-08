@@ -22,11 +22,13 @@
       <% end %>
 
       <% @foods.each do |food| %>
-        <p>
-          <%= food.name %>
-          <%= food.amount %>
-          <%= link_to "削除", recipe_food_path(params[:recipe_id], food), method: :delete %>
-        </p>
+        <div style="display: flex; justify-content: space-between">
+          <p>
+            <%= food.name %>
+            <%= food.amount %>
+          </p>
+          <p><%= link_to "削除", recipe_food_path(params[:recipe_id], food), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
+        </div>
       <% end %>
 
       <%= link_to "手順の追加に進む", new_recipe_procedure_path(params[:recipe_id]), class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
