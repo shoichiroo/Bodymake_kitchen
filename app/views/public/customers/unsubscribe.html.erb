@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+
+  <h4 class="text-center">本当に退会しますか？</h4>
+	<p class="text-center">退会すると、会員登録情報やこれまでの購入履歴が閲覧できなくなります。退会する場合は、「退会する」をクリックしてください。</p>
+		<%= link_to "TOPページに戻る", root_path, class: "btn btn-warning btn-{themecolor} rounded-pill btn-block mb-4" %>
+		<%= link_to "退会する", customers_withdraw_path, method: :patch, "data-confirm" => "OKを押すと退会処理がされます。本当によろしいですか？", class: "btn btn-danger btn-{themecolor} rounded-pill btn-block" %>
+	  </div>
+	</div>
+</div>

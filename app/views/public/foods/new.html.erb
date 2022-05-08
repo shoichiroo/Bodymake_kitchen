@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <h4 class="text-center my-5">材料の追加</h4>
+
+      <%= form_with model: @food, url: recipe_foods_path(params[:recipe_id]) do |f| %>
+        <%= f.hidden_field :recipe_id %>
+
+        <div class="form-group">
+          <%= f.label "材料・調味料" %>
+          <%= f.text_field :name, placeholder: "例) 鶏胸肉", class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-5">
+          <%= f.label "分量" %>
+          <%= f.text_field :amount, placeholder: "例) 200g", class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-5">
+          <%= f.submit "追加する", class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
+        </div>
+      <% end %>
+
+      <% @foods.each do |food| %>
+        <p>
+          <%= food.name %>
+          <%= food.amount %>
+          <%= link_to "削除", recipe_food_path(params[:recipe_id], food), method: :delete %>
+        </p>
+      <% end %>
+
+      <%= link_to "手順の追加に進む", new_recipe_procedure_path(params[:recipe_id]), class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
+    </div>
+  </div>
+</div>

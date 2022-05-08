@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h4 class="text-center my-4">カテゴリー追加</h4>
+
+      <%= form_with model: @category, url: admin_categories_path do |f| %>
+        <div class="form-group mb-4">
+          <%= f.text_field :name, autofocus: true, placeholder: "カテゴリー名", class: "form-control" %>
+        </div>
+
+        <div class="form-group mb-5">
+          <%= f.submit "新規登録", class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
+        </div>
+      <% end %>
+
+      <h4 class="text-center mb-4">カテゴリー一覧</h4>
+
+      <% @categories.each do |category| %>
+        <div class="mb-3">
+          <strong><%= category.name %></strong>
+          <%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-warning btn-{themecolor} rounded-pill" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
