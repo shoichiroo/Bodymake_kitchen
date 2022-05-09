@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <h5 class="my-5">「<%= @name %>」の検索結果</h5>
+
+      <% @recipes.each do |recipe| %>
+        <%= image_tag recipe.get_image(200, 200) %>
+      <% end %>
+    </div>
+  </div>
+</div>

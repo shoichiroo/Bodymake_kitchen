@@ -29,6 +29,14 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4 offset-md-1">
+      <%= form_with url: searches_search_path, method: :get do |f| %>
+        <%= f.text_field :name, placeholder: "料理名", class: "form-control mr-sm-2" %>
+        <%= f.submit "レシピを検索", class: "btn btn-outline-secondary my-2 my-sm-0" %>
+      <% end %>
+    </div>
+  </div>
   <div class="row my-3">
     <div class="col-md-10 offset-md-1">
       <h4>新着順</h4>

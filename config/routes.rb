@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -18,6 +17,7 @@ Rails.application.routes.draw do
     root to: "recipes#index"
     get "customers/unsubscribe"
     patch "customers/withdraw"
+    get "searches/search"
     resources :customers, only: [:show, :edit, :update]
     resources :recipes, only: [:new, :create, :show, :edit, :update] do
       resources :foods, only: [:new, :create, :destroy]
