@@ -16,6 +16,20 @@ class Public::RecipesController < ApplicationController
   end
 
   def show
+    @recipe = Recipe.find(params[:id])
+    @review = Review.new
+    @reviews = @recipe.reviews
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+    @categories = Category.all
+  end
+
+  def update
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
+    redirect_to recipe_path(recipe)
   end
 
   private
