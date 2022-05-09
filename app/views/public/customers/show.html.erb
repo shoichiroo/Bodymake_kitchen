@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <%= image_tag @customer.get_profile_image(50, 50) %>
+      <h4><%= @customer.name %>さん</h4>
+      <p><%= @customer.introduction %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <% @favorite_recipes.each do |favorite_recipe| %>
+        <%= image_tag favorite_recipe.get_image(200, 200) %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <% @recipes.each do |recipe| %>
+        <%= image_tag recipe.get_image(200, 200) %>
+      <% end %>
+    </div>
+  </div>
+</div>

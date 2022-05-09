@@ -26,6 +26,11 @@
               <% end %>
             </li>
             <li class="nav-item active">
+              <%= link_to customer_path(current_customer), class: "nav-link" do %>
+                <i class="fas fa-user"></i> <strong>マイページ</strong>
+              <% end %>
+            </li>
+            <li class="nav-item active">
               <%= link_to new_recipe_path, class: "nav-link" do %>
                 <i class="fas fa-utensils"></i> <strong>レシピ投稿</strong>
               <% end %>

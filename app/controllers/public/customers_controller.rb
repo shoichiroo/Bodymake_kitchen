@@ -1,4 +1,10 @@
 class Public::CustomersController < ApplicationController
+  def show
+    @customer = Customer.find(params[:id])
+    @recipes = @customer.recipes
+    @favorite_recipes = @customer.favorites.map{|favorite| favorite.recipe}
+  end
+
   def edit
     @customer = Customer.find(params[:id])
   end

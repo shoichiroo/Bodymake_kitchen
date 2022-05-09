@@ -18,10 +18,12 @@ Rails.application.routes.draw do
     root to: "recipes#index"
     get "customers/unsubscribe"
     patch "customers/withdraw"
-    resources :customers, only: [:edit, :update]
-    resources :recipes, only: [:new, :create, :show] do
+    resources :customers, only: [:show, :edit, :update]
+    resources :recipes, only: [:new, :create, :show, :edit, :update] do
       resources :foods, only: [:new, :create, :destroy]
       resources :procedures, only: [:new, :create, :destroy]
+      resources :reviews, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end
   end
 end
