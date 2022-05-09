@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-12">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -9,7 +9,7 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-             <%= image_tag "no_image.jpg" %>
+             <%= image_tag "no_image.jpg", style: "display: block; object-fit: cover; height: 400px; width: 100%;" %>
           </div>
           <div class="carousel-item">
             <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Second slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"/><text x="50%" y="50%" fill="#444" dy=".3em">Second slide</text></svg>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 offset-md-1">
+    <div class="col-md-12">
       <%= form_with url: searches_search_path, method: :get do |f| %>
         <%= f.text_field :name, placeholder: "料理名", class: "form-control mr-sm-2" %>
         <%= f.submit "レシピを検索", class: "btn btn-outline-secondary my-2 my-sm-0" %>
@@ -38,17 +38,22 @@
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-12">
       <h4>新着順</h4>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-2 offset-md-1">
-      <% @recipes.each do |recipe| %>
-        <%= link_to recipe_path(recipe) do %>
-          <%= image_tag recipe.get_image(250, 250) %>
-        <% end %>
-      <% end %>
-    </div>
+    <% @recipes.each do |recipe| %>
+      <div class="col-md-3 mb-4">
+        <div class="card">
+          <%= link_to recipe_path(recipe) do %>
+            <%= image_tag recipe.image, style: "object-fit: cover; height: 253px; width: 100%;" %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
