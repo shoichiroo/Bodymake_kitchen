@@ -1,6 +1,7 @@
 class Public::RecipesController < ApplicationController
   def index
     @recipes = Recipe.all.order(created_at: :desc)
+    @categories = Category.all
   end
 
   def new
@@ -12,13 +13,14 @@ class Public::RecipesController < ApplicationController
     recipe = Recipe.new(recipe_params)
     recipe.customer_id = current_customer.id
     recipe.save
-    redirect_to new_recipe_food_path(recipe)
+    redirect_to recipe_path(recipe)
   end
 
   def show
     @recipe = Recipe.find(params[:id])
     @review = Review.new
     @reviews = @recipe.reviews
+    @procedures = @recipe.procedures
   end
 
   def edit
@@ -30,6 +32,12 @@ class Public::RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
     recipe.update(recipe_params)
     redirect_to recipe_path(recipe)
+  end
+
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to root_path
   end
 
   private
