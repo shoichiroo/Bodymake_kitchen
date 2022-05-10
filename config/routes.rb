@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     patch "customers/withdraw"
     get "searches/search"
     resources :customers, only: [:show, :edit, :update]
-    resources :recipes, only: [:new, :create, :show, :edit, :update] do
+    resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy] do
       resources :foods, only: [:new, :create, :destroy]
       resources :procedures, only: [:new, :create, :destroy]
       resources :reviews, only: [:create, :destroy]

@@ -1,20 +1,54 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-5 offset-md-1">
-      <%= image_tag @recipe.get_image(300, 300) %>
+  <div class="row my-5">
+    <div class="col-md-7">
+      <%= image_tag @recipe.image, style: "object-fit: cover; height: 635px; width: 100%;" %>
     </div>
     <div class="col-md-5">
-      <h4><strong><%= @recipe.name %></strong></h4>
-      <% if @recipe.favorited_by?(current_customer) %>
-        <%= link_to "お気に入りを削除", recipe_favorites_path(@recipe), method: :delete, class: "btn btn-secondary btn-block btn-{themecolor} rounded-pill" %>
-      <% else %>
-        <%= link_to "お気に入りに追加", recipe_favorites_path(@recipe), method: :post, class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
+      <h4 class="text-center mb-4"><strong><%= @recipe.name %></strong></h4>
+      <div id="favorite_buttons_<%= @recipe.id %>">
+        <%= render "public/favorites/favorite", recipe: @recipe %>
+      </div>
+      <div class="border border-secondary rounded mb-4">
+        <p>カロリー <%= @recipe.calorie %>kcal</p>
+        <p>たんぱく質 <%= @recipe.protein %>g</p>
+        <p>脂質 <%= @recipe.fat %>g</p>
+        <p>炭水化物 <%= @recipe.carbo %>g</p>
+      </div>
+      <p class="mb-5"><%= @recipe.description %></p>
+      <div style="display: flex; justify-content: space-between">
+        <p><%= link_to "レシピ編集", edit_recipe_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+        <p><%= link_to "削除", recipe_path(@recipe), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-7">
+      <div style="display: flex; justify-content: space-between">
+        <h5><strong>手順</strong></h5>
+        <p><%= link_to "手順を追加", new_recipe_procedure_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+      </div>
+      <% @procedures.each do |procedure| %>
+        <div class="border-bottom border-secondary">
+          <p><%= procedure.description %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-5">
+      <div style="display: flex; justify-content: space-between">
+        <h5><strong>材料</strong></h5>
+        <p><%= link_to "材料を追加", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+      </div>
+      <% @recipe.foods.each do |food| %>
+        <div class="border-bottom border-secondary" style="display: flex; justify-content: space-between">
+          <p><%= food.name %></p>
+          <p><%= food.amount %></p>
+        </div>
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <h4><strong>このレシピを評価する</strong></h4>
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h4 class="mb-4"><strong>このレシピを評価する</strong></h4>
       <%= form_with model: [@recipe, @review] do |f| %>
         <div class="form-group" id="star">
           <%= f.hidden_field :star, id: :review_star %>
@@ -42,9 +76,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-10 offset-md-1">
+    <div class="col-md-12">
+      <h4 class="mb-4"><strong>レビュー</strong></h4>
       <% @reviews.each do |review| %>
-        <div id="star-rate<%= review.id %>"></div>
+        <p><strong><%= review.customer.name %></strong></p>
+        <div class="mb-4" id="star-rate<%= review.id %>"></div>
           <script>
             $('#star-rate<%= review.id %>').empty();
             $('#star-rate<%= review.id %>').raty({
@@ -56,8 +92,10 @@
             score: <%= review.star %>,
           });
           </script>
-        <%= review.comment %>
-        <%= link_to "削除", recipe_review_path(@recipe, review), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %>
+        <div class="border-bottom border-secondary">
+          <p><%= review.comment %></p>
+          <p><%= link_to "削除", recipe_review_path(@recipe, review), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
+        </div>
       <% end %>
     </div>
   </div>
