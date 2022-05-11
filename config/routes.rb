@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+    post 'customers/guest_sign_in', to: 'public/customers#guest_sign_in'
+  end
+
   scope module: :public do
     root to: "recipes#index"
     get "customers/unsubscribe"

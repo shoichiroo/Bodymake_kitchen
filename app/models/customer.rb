@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :favorite_recipes, through: :favorites, source: :recipe
 
   def get_profile_image(width, height)
     unless profile_image.attached?
@@ -20,5 +21,12 @@ class Customer < ApplicationRecord
 
   def active_for_authentication?
     super && (is_deleted == false)
+  end
+
+  def self.guest
+    find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+      customer.name = "guestuser"
+    end
   end
 end
