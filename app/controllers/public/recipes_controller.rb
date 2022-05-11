@@ -2,6 +2,7 @@ class Public::RecipesController < ApplicationController
   def index
     @recipes = Recipe.all.order(created_at: :desc)
     @categories = Category.all
+    @favorite_recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
   end
 
   def new

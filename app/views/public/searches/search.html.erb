@@ -8,18 +8,5 @@
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <% @recipes.each do |recipe| %>
-      <div class="col-md-3 mb-4">
-        <div class="card">
-          <%= link_to recipe_path(recipe) do %>
-            <%= image_tag recipe.image, style: "object-fit: cover; height: 253px; width: 100%;" %>
-          <% end %>
-          <div class="card-body">
-            <p class="card-text"><%= recipe.name %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <%= render "public/recipes/index", recipes: @recipes %>
 </div>
