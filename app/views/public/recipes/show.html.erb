@@ -6,8 +6,22 @@
       <%= image_tag @recipe.image, style: "object-fit: cover; height: 635px; width: 100%;" %>
     </div>
     <div class="col-md-5">
-      <h4 class="text-center mb-4"><strong><%= @recipe.name %></strong></h4>
-      <div id="favorite_buttons_<%= @recipe.id %>">
+      <h4 class="mb-2"><strong><%= @recipe.name %></strong></h4>
+      <div id="star-average-<%= @recipe.id %>"></div>
+        <script>
+          $("#star-average-<%= @recipe.id %>").empty();
+          $("#star-average-<%= @recipe.id %>").raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf  : "<%= asset_path('star-half.png') %>",
+          half      : false,
+          readOnly: true,
+          score: <%= @recipe.reviews.average(:star).to_f.round(1) %>,
+        });
+        </script>
+        <span>(<%= @recipe.reviews.count %>件)</span>
+      <div class="mt-5" id="favorite_buttons_<%= @recipe.id %>">
         <%= render "public/favorites/favorite", recipe: @recipe %>
       </div>
       <div class="border border-secondary rounded mb-4">
