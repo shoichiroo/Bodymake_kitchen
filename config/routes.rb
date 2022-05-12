@@ -10,11 +10,11 @@ Rails.application.routes.draw do
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: "public/sessions"
   }
 
   devise_scope :customer do
-    post 'customers/guest_sign_in', to: 'public/customers#guest_sign_in'
+    post "customers/guest_sign_in", to: "public/customers#guest_sign_in"
   end
 
   scope module: :public do
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get "customers/unsubscribe"
     patch "customers/withdraw"
     get "searches/search"
+    get "favorites" => "favorites#index"
     resources :customers, only: [:show, :edit, :update]
     resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy] do
       resources :foods, only: [:new, :create, :destroy]
@@ -29,5 +30,6 @@ Rails.application.routes.draw do
       resources :reviews, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    resources :view_counts, only: [:index]
   end
 end

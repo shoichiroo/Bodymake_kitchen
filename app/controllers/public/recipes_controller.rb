@@ -2,6 +2,8 @@ class Public::RecipesController < ApplicationController
   def index
     @recipes = Recipe.all.order(created_at: :desc)
     @categories = Category.all
+    @favorite_recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
+    @view_count_recipes = Recipe.find(ViewCount.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
   end
 
   def new
@@ -18,6 +20,9 @@ class Public::RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    unless ViewCount.find_by(customer_id: current_customer.id, recipe_id: @recipe.id)
+      current_customer.view_counts.create(recipe_id: @recipe.id)
+    end
     @review = Review.new
     @reviews = @recipe.reviews
     @procedures = @recipe.procedures

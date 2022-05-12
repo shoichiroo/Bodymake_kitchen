@@ -1,4 +1,8 @@
 class Public::FavoritesController < ApplicationController
+  def index
+    @recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").pluck(:recipe_id))
+  end
+
   def create
     @recipe = Recipe.find(params[:recipe_id])
     favorite = Favorite.new

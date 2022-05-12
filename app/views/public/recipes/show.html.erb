@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-7">
+    <!--<div class="col-md-7", style="max-height: 575px; max-width: 575px;">-->
+      <%#= image_tag @recipe.image, style: "height: 100%; width: 100%; padding-left: 1%; object-fit: cover;" %>
       <%= image_tag @recipe.image, style: "object-fit: cover; height: 635px; width: 100%;" %>
     </div>
     <div class="col-md-5">
@@ -27,9 +29,9 @@
         <h5><strong>手順</strong></h5>
         <p><%= link_to "手順を追加", new_recipe_procedure_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
       </div>
-      <% @procedures.each do |procedure| %>
+      <% @procedures.each.with_index(1) do |procedure, i| %>
         <div class="border-bottom border-secondary">
-          <p><%= procedure.description %></p>
+          <p><strong><%= i %></strong> <%= procedure.description %></p>
         </div>
       <% end %>
     </div>
