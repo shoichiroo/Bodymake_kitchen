@@ -1,5 +1,5 @@
 class Public::SearchesController < ApplicationController
-  def search
+  def index
     if params[:name].present? && params[:category].present?
       @name = params[:name]
       recipe = Recipe.where("name LIKE ?", "%" + @name + "%")

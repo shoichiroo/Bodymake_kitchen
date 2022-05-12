@@ -1,23 +1,24 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <%= image_tag @customer.get_profile_image(50, 50) %>
-      <h4><%= @customer.name %>さん</h4>
+  <div class="row my-5">
+    <div class="col-md-12  border border-secondary rounded">
+      <div style="width: 100px; height: 100px;">
+        <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
+      </div>
+      <h4 class="mb-5"><%= @customer.name %></h4>
       <p><%= @customer.introduction %></p>
+      <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <% @favorite_recipes.each do |favorite_recipe| %>
-        <%= image_tag favorite_recipe.get_image(200, 200) %>
-      <% end %>
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <h4><%= @customer.name %>さんのお気に入りレシピ</h4>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-10 offset-md-1">
-      <% @recipes.each do |recipe| %>
-        <%= image_tag recipe.get_image(200, 200) %>
-      <% end %>
+  <%= render "public/recipes/index", recipes: @favorite_recipes %>
+  <div class="row mt-5 mb-3">
+    <div class="col-md-12">
+      <h4><%= @customer.name %>さんが投稿したレシピ</h4>
     </div>
   </div>
+  <%= render "public/recipes/index", recipes: @recipes %>
 </div>

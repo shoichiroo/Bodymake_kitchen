@@ -12,7 +12,7 @@ class Public::CustomersController < ApplicationController
   def update
     customer = Customer.find(params[:id])
     customer.update(customer_params)
-    redirect_to root_path
+    redirect_to customer_path(customer)
   end
 
   def unsubscribe

@@ -31,7 +31,7 @@
   </div>
   <div class="row my-5">
     <div class="col-md-6 offset-md-3">
-      <%= form_with url: searches_search_path, method: :get do |f| %>
+      <%= form_with url: searches_path, method: :get do |f| %>
         <%= f.text_field :name, placeholder: "料理名", class: "form-control" %>
         <%= f.collection_select(:category, @categories, :id, :name, {prompt: "--カテゴリーを選択する--"}, class: "form-control") %>
         <%= f.submit "レシピを検索", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
