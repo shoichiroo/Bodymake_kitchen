@@ -1,0 +1,36 @@
+<div class="cantainer">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h4 class="text-center my-5"><%= @customer.name %>さんの会員詳細</h4>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>会員ID</td>
+            <td><%= @customer.id %></td>
+          </tr>
+          <tr>
+            <td>氏名</td>
+            <td><%= @customer.name %></td>
+          </tr>
+          <tr>
+            <td>自己紹介文</td>
+            <td><%= @customer.introduction %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <% if @customer.is_deleted == false %>
+              <td class="text-success">有効</td>
+            <% else %>
+              <td>退会</td>
+            <% end %>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="offset-md-3"></div>
+  </div>
+</div>

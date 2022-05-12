@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <a class="navbar-brand" href="/"><strong>Bodymake Kitchen</strong><i class="fas fa-dumbbell"></i></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <% if customer_signed_in? %>
+      <li class="nav-item active">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fas fa-home"></i> <strong>TOP</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to customer_path(current_customer), class: "nav-link" do %>
+          <i class="fas fa-user"></i> <strong>マイページ</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to new_recipe_path, class: "nav-link" do %>
+          <i class="fas fa-utensils"></i> <strong>レシピ投稿</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link" do %>
+          <i class="fas fa-sign-out-alt"></i> <strong>ログアウト</strong>
+        <% end %>
+      </li>
+      <% else %>
+      <li class="nav-item active">
+        <%= link_to customers_guest_sign_in_path, method: :post, class: "nav-link" do %>
+          <i class="fas fa-user-circle"></i> <strong>ゲストログイン</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to new_customer_session_path, class: "nav-link" do %>
+          <i class="fas fa-sign-in-alt"></i> <strong>ログイン</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to new_customer_registration_path, class: "nav-link" do %>
+          <i class="fas fa-user"></i> <strong>ユーザー登録(無料)</strong>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
