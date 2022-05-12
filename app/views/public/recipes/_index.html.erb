@@ -6,6 +6,20 @@
           <%= image_tag recipe.image, style: "object-fit: cover; height: 253px; width: 100%;" %>
         <% end %>
         <div class="card-body">
+          <div class="star-average-<%= recipe.id %>"></div>
+            <script>
+              $(".star-average-<%= recipe.id %>").empty();
+              $(".star-average-<%= recipe.id %>").raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf  : "<%= asset_path('star-half.png') %>",
+              half      : false,
+              readOnly: true,
+              score: <%= recipe.reviews.average(:star).to_f.round(1) %>,
+            });
+            </script>
+            <span>(<%= recipe.reviews.count %>件)</span>
           <p class="card-text"><strong><%= recipe.name %></strong></p>
         </div>
       </div>
