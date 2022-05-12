@@ -1,0 +1,2 @@
+module Public::ViewCountsHelper
+end

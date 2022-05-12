@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
   has_many :procedures, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   def get_image(width, height)
     unless image.attached?
