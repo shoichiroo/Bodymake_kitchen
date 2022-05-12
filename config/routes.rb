@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     root to: "recipes#index"
     get "customers/unsubscribe"
     patch "customers/withdraw"
-    get "searches/search"
     get "favorites" => "favorites#index"
     resources :customers, only: [:show, :edit, :update]
     resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy] do
@@ -30,6 +29,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    resources :searches, only: [:index]
     resources :view_counts, only: [:index]
   end
 end
