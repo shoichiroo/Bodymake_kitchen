@@ -4,6 +4,13 @@ class Public::RecipesController < ApplicationController
     @categories = Category.all
     @favorite_recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
     @view_count_recipes = Recipe.find(ViewCount.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
+    @star_recipes = Recipe.left_joins(:reviews).distinct.sort_by do |recipe|
+                      if recipe.reviews.present?
+                        recipe.reviews.map(&:star).sum
+                      else
+                        0
+                      end
+                    end.reverse.first(4)
   end
 
   def new

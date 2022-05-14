@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get "customers/unsubscribe"
     patch "customers/withdraw"
     get "favorites" => "favorites#index"
+    get "reviews" => "reviews#index"
     resources :customers, only: [:show, :edit, :update]
     resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy] do
       resources :foods, only: [:new, :create, :destroy]
