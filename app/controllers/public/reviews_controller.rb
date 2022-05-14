@@ -1,4 +1,6 @@
 class Public::ReviewsController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     recipes = Recipe.left_joins(:reviews).distinct.sort_by do |recipe|
                 if recipe.reviews.present?

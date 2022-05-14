@@ -1,4 +1,6 @@
 class Public::FoodsController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @food = Food.new(recipe_id: params[:recipe_id])
     @foods = Food.where(recipe_id: params[:recipe_id])

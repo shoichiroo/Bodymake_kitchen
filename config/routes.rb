@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root to: "recipes#index"
+    root to: "recipes#top"
     get "customers/unsubscribe"
     patch "customers/withdraw"
     get "favorites" => "favorites#index"

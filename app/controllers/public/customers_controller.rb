@@ -1,4 +1,7 @@
 class Public::CustomersController < ApplicationController
+  before_action :authenticate_customer!, except: [:guest_sign_in]
+  before_action :ensure_guest_customer, only: [:edit]
+
   def show
     @customer = Customer.find(params[:id])
     @recipes = @customer.recipes.page(params[:page])
@@ -6,7 +9,6 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find(params[:id])
   end
 
   def update
@@ -16,6 +18,9 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
+    if current_customer.name == "guestuser"
+      redirect_to customer_path(current_customer)
+    end
   end
 
   def withdraw
@@ -34,5 +39,12 @@ class Public::CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:profile_image, :name, :introduction)
+  end
+
+  def ensure_guest_customer
+    @customer = Customer.find(params[:id])
+    if @customer.name == "guestuser"
+      redirect_to customer_path(current_customer)
+    end
   end
 end

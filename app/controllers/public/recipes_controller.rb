@@ -1,5 +1,7 @@
 class Public::RecipesController < ApplicationController
-  def index
+  before_action :authenticate_customer!, except: [:top]
+
+  def top
     @recipes = Recipe.page(params[:page]).order(created_at: :desc)
     @categories = Category.all
     @favorite_recipes = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.first(4)

@@ -1,4 +1,6 @@
 class Public::ProceduresController < ApplicationController
+  before_action :authenticate_customer!
+
   def new
     @procedure = Procedure.new(recipe_id: params[:recipe_id])
     @procedures = Procedure.where(recipe_id: params[:recipe_id])
