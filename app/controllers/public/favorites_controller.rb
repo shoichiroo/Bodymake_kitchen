@@ -1,6 +1,7 @@
 class Public::FavoritesController < ApplicationController
   def index
-    @recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").pluck(:recipe_id))
+    recipes = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}
+    @recipes = Kaminari.paginate_array(recipes).page(params[:page])
   end
 
   def create
