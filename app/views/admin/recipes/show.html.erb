@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-7">
+    <!--<div class="col-md-7", style="max-height: 575px; max-width: 575px;">-->
+      <%#= image_tag @recipe.image, style: "height: 100%; width: 100%; padding-left: 1%; object-fit: cover;" %>
+      <%= image_tag @recipe.image, style: "object-fit: cover; height: 635px; width: 100%;" %>
+    </div>
+    <div class="col-md-5">
+      <h4 class="mb-2"><strong><%= @recipe.name %></strong></h4>
+      <div id="star-average-<%= @recipe.id %>"></div>
+        <script>
+          $("#star-average-<%= @recipe.id %>").empty();
+          $("#star-average-<%= @recipe.id %>").raty({
+          size      : 36,
+          starOff   : '<%= asset_path('star-off.png') %>',
+          starOn    : '<%= asset_path('star-on.png') %>',
+          starHalf  : "<%= asset_path('star-half.png') %>",
+          half      : false,
+          readOnly: true,
+          score: <%= @recipe.reviews.average(:star).to_f.round(1) %>,
+        });
+        </script>
+        <span>(<%= @recipe.reviews.count %>件)</span>
+      <div class="border border-secondary rounded mb-4">
+        <p>カロリー <%= @recipe.calorie %>kcal</p>
+        <p>たんぱく質 <%= @recipe.protein %>g</p>
+        <p>脂質 <%= @recipe.fat %>g</p>
+        <p>炭水化物 <%= @recipe.carbo %>g</p>
+      </div>
+      <p class="mb-5"><%= @recipe.description %></p>
+      <p><%= link_to "削除", admin_recipe_path(@recipe), method: :delete, class: "btn btn-danger btn-block btn-{themecolor} rounded-pill" %></p>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-7">
+      <h5><strong>手順</strong></h5>
+      <% @procedures.each.with_index(1) do |procedure, i| %>
+        <div class="border-bottom border-secondary">
+          <p><strong><%= i %></strong> <%= procedure.description %></p>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-5">
+      <h5><strong>材料</strong></h5>
+      <% @foods.each do |food| %>
+        <div class="border-bottom border-secondary" style="display: flex; justify-content: space-between">
+          <p><%= food.name %></p>
+          <p><%= food.amount %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to admin_customer_path(@customer), class: "text-dark text-decoration-none" do %>
+      <div class="row my-5">
+        <div class="col-md-12  border border-secondary rounded">
+          <h4 class="my-3">このレシピの作成者</h4>
+          <div style="width: 100px; height: 100px;">
+            <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
+          </div>
+          <h4 class="mb-5"><%= @customer.name %></h4>
+          <p><%= @customer.introduction %></p>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

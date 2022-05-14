@@ -11,13 +11,18 @@
           <i class="fas fa-user"></i> <strong>会員管理</strong>
         <% end %>
       <li class="nav-item active">
-        <%= link_to admin_categories_path, class: "nav-link" do %>
-          <i class="fas fa-book-open"></i> <strong>カテゴリー管理</strong>
+        <%= link_to admin_recipes_path, class: "nav-link" do %>
+          <i class="fas fa-utensils"></i> <strong>レシピ管理</strong>
         <% end %>
       </li>
       <li class="nav-item active">
         <%= link_to admin_reviews_path, class: "nav-link" do %>
           <i class="fas fa-star"></i> <strong>レビュー管理</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to admin_categories_path, class: "nav-link" do %>
+          <i class="fas fa-book-open"></i> <strong>カテゴリー管理</strong>
         <% end %>
       </li>
       <li class="nav-item active">

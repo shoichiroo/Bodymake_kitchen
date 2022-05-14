@@ -54,7 +54,7 @@
         <h5><strong>材料</strong></h5>
         <p><%= link_to "材料を追加", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
       </div>
-      <% @recipe.foods.each do |food| %>
+      <% @foods.each do |food| %>
         <div class="border-bottom border-secondary" style="display: flex; justify-content: space-between">
           <p><%= food.name %></p>
           <p><%= food.amount %></p>

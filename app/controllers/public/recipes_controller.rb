@@ -26,6 +26,7 @@ class Public::RecipesController < ApplicationController
     @review = Review.new
     @reviews = @recipe.reviews
     @procedures = @recipe.procedures
+    @foods = @recipe.foods
     @customer = @recipe.customer
   end
 
