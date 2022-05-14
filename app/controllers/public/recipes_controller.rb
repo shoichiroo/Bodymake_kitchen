@@ -1,8 +1,9 @@
 class Public::RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all.order(created_at: :desc)
+    @recipes = Recipe.page(params[:page]).order(created_at: :desc)
     @categories = Category.all
-    @favorite_recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
+    @favorite_recipes = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.first(4)
+    #@favorite_recipes = Recipe.find(Favorite.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
     @view_count_recipes = Recipe.find(ViewCount.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
     @star_recipes = Recipe.left_joins(:reviews).distinct.sort_by do |recipe|
                       if recipe.reviews.present?
@@ -31,7 +32,7 @@ class Public::RecipesController < ApplicationController
       current_customer.view_counts.create(recipe_id: @recipe.id)
     end
     @review = Review.new
-    @reviews = @recipe.reviews
+    @reviews = @recipe.reviews.page(params[:page]).per(5)
     @procedures = @recipe.procedures
     @foods = @recipe.foods
     @customer = @recipe.customer

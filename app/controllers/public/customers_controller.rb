@@ -1,8 +1,8 @@
 class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
-    @recipes = @customer.recipes
-    @favorite_recipes = @customer.favorite_recipes
+    @recipes = @customer.recipes.page(params[:page])
+    @favorite_recipes = @customer.favorite_recipes.page(params[:page])
   end
 
   def edit

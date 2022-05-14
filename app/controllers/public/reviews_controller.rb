@@ -1,12 +1,13 @@
 class Public::ReviewsController < ApplicationController
   def index
-    @recipes = Recipe.left_joins(:reviews).distinct.sort_by do |recipe|
+    recipes = Recipe.left_joins(:reviews).distinct.sort_by do |recipe|
                 if recipe.reviews.present?
                   recipe.reviews.map(&:star).sum
                 else
                   0
                 end
               end.reverse
+    @recipes = Kaminari.paginate_array(recipes).page(params[:page])
   end
 
   def create
