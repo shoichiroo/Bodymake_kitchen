@@ -7,9 +7,13 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new(category_params)
-    category.save
-    redirect_to admin_categories_path
+    @category = Category.new(category_params)
+    if @category.save
+      redirect_to admin_categories_path
+    else
+      @categories = Category.page(params[:page]).per(10)
+      render :index
+    end
   end
 
   def edit
@@ -17,9 +21,12 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def update
-    category = Category.find(params[:id])
-    category.update(category_params)
-    redirect_to admin_categories_path
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      redirect_to admin_categories_path
+    else
+      render :edit
+    end
   end
 
   private

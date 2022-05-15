@@ -30,7 +30,7 @@
                 </script>
             </td>
             <td><%= review.comment %></td>
-            <td><%= link_to "削除", admin_review_path(review), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></td>
+            <td><%= link_to "削除", admin_review_path(review), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-{themecolor} rounded-pill" %></td>
           </tr>
           <% end %>
         </tbody>

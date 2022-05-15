@@ -21,10 +21,12 @@
         });
         </script>
         <span>(<%= @recipe.reviews.count %>件)</span>
+      <% if @customer != current_customer %>
       <div class="mt-5" id="favorite_buttons_<%= @recipe.id %>">
         <%= render "public/favorites/favorite", recipe: @recipe %>
       </div>
-      <div class="border border-secondary rounded mb-4">
+      <% end %>
+      <div class="border border-secondary rounded mt-5 mb-4">
         <p>カロリー <%= @recipe.calorie %>kcal</p>
         <p>たんぱく質 <%= @recipe.protein %>g</p>
         <p>脂質 <%= @recipe.fat %>g</p>
@@ -34,7 +36,7 @@
       <div style="display: flex; justify-content: space-between">
         <% if @customer == current_customer %>
           <p><%= link_to "レシピ編集", edit_recipe_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
-          <p><%= link_to "削除", recipe_path(@recipe), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
+          <p><%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
         <% end %>
       </div>
     </div>
@@ -55,7 +57,7 @@
     </div>
     <div class="col-md-5">
       <div style="display: flex; justify-content: space-between">
-        <h5><strong>材料</strong></h5>
+        <h5><strong>材料(1人分)</strong></h5>
         <% if @customer == current_customer %>
           <p><%= link_to "材料を追加", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         <% end %>
@@ -68,6 +70,7 @@
       <% end %>
     </div>
   </div>
+  <% if @customer != current_customer %>
   <div class="row mb-5">
     <div class="col-md-12">
       <h4 class="mb-4"><strong>このレシピを評価する</strong></h4>
@@ -97,6 +100,7 @@
       <% end %>
     </div>
   </div>
+  <% end %>
   <div class="row">
     <div class="col-md-12">
       <h4 class="mb-4"><strong>レビュー</strong></h4>

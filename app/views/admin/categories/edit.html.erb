@@ -1,11 +1,12 @@
 <div class="container">
+  <%= render "layouts/error", object: @category %>
   <div class="row">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
       <h4 class="text-center my-5">カテゴリー編集</h4>
 
       <%= form_with model: @category, url: admin_category_path do |f| %>
         <div class="form-group mb-4">
-          <%= f.text_field :name, placeholder: "カテゴリー名", class: "form-control" %>
+          <%= f.text_field :name, placeholder: "カテゴリー名(20文字以内)", class: "form-control" %>
         </div>
 
         <div class="form-group">

@@ -13,18 +13,18 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
-    recipe = Recipe.find(params[:recipe_id])
-    review = Review.new(review_params)
-    review.customer_id = current_customer.id
-    review.recipe_id = recipe.id
-    review.save
-    redirect_to request.referer
+    @recipe = Recipe.find(params[:recipe_id])
+    @review = Review.new(review_params)
+    @review.customer_id = current_customer.id
+    @review.recipe_id = @recipe.id
+    @review.save
+    redirect_to request.referer, notice: "レビューを投稿しました"
   end
 
   def destroy
     review = Review.find(params[:id])
     review.destroy
-    redirect_to request.referer
+    redirect_to request.referer, notice: "レビューを削除しました"
   end
 
   private

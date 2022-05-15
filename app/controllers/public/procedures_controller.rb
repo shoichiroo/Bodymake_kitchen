@@ -1,15 +1,19 @@
 class Public::ProceduresController < ApplicationController
   before_action :authenticate_customer!
+  before_action :ensure_procedure, only: [:new]
 
   def new
-    @procedure = Procedure.new(recipe_id: params[:recipe_id])
     @procedures = Procedure.where(recipe_id: params[:recipe_id])
   end
 
   def create
-    procedure = Procedure.new(procedure_params)
-    procedure.save
-    redirect_to request.referer
+    @procedure = Procedure.new(procedure_params)
+    if @procedure.save
+      redirect_to request.referer
+    else
+      @procedures = Procedure.where(recipe_id: params[:recipe_id])
+      render :new
+    end
   end
 
   def destroy
@@ -18,7 +22,16 @@ class Public::ProceduresController < ApplicationController
     redirect_to request.referer
   end
 
+  private
+
   def procedure_params
     params.require(:procedure).permit(:description, :recipe_id)
+  end
+
+  def ensure_procedure
+    @procedure = Procedure.new(recipe_id: params[:recipe_id])
+    if @procedure.recipe.customer != current_customer
+      redirect_to recipe_path(params[:recipe_id])
+    end
   end
 end

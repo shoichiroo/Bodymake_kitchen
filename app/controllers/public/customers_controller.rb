@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:guest_sign_in]
-  before_action :ensure_guest_customer, only: [:edit]
+  before_action :ensure_customer, only: [:edit]
 
   def show
     @customer = Customer.find(params[:id])
@@ -12,9 +12,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    customer = Customer.find(params[:id])
-    customer.update(customer_params)
-    redirect_to customer_path(customer)
+    @customer = Customer.find(params[:id])
+    if @customer.update(customer_params)
+      redirect_to customer_path(@customer), notice: "ユーザー情報を編集しました"
+    else
+      render :edit
+    end
   end
 
   def unsubscribe
@@ -26,13 +29,13 @@ class Public::CustomersController < ApplicationController
   def withdraw
     current_customer.update(is_deleted: true)
     reset_session
-    redirect_to root_path
+    redirect_to root_path, notice: "退会が完了しました"
   end
 
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
-    redirect_to root_path
+    redirect_to root_path, notice: "ゲストログインしました"
   end
 
   private
@@ -41,9 +44,9 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:profile_image, :name, :introduction)
   end
 
-  def ensure_guest_customer
+  def ensure_customer
     @customer = Customer.find(params[:id])
-    if @customer.name == "guestuser"
+    if @customer.name == "guestuser" || @customer != current_customer
       redirect_to customer_path(current_customer)
     end
   end
