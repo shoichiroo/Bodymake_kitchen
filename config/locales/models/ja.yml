@@ -3,6 +3,8 @@ ja:
     models:
     attributes:
       customer:
+        email: メールアドレス
+        password: パスワード
         name: ユーザー名
         introduction: 自己紹介文
       recipe:
