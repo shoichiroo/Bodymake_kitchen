@@ -1,4 +1,5 @@
 <div class="container">
+  <%= render "layouts/error", object: @procedure %>
   <div class="row">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
       <h4 class="text-center my-5">手順の追加</h4>
@@ -8,7 +9,7 @@
 
         <div class="form-group">
           <%= f.label "手順" %>
-          <%= f.text_area :description, placeholder: "60文字以内で入力してください", class: "form-control" %>
+          <%= f.text_area :description, placeholder: "60文字以内", class: "form-control" %>
         </div>
 
         <div class="form-group">

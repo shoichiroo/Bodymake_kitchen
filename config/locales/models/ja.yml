@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+    attributes:
+      customer:
+        email: メールアドレス
+        password: パスワード
+        name: ユーザー名
+        introduction: 自己紹介文
+      recipe:
+        name: レシピ名
+        description: キャッチコピー
+        calorie: 総カロリー
+        protein: たんぱく質
+        fat: 脂質
+        carbo: 炭水化物
+        image: レシピ画像
+      food:
+        name: 材料・調味料
+        amount: 分量
+      procedure:
+        description: 手順
+      category:
+        name: カテゴリー名

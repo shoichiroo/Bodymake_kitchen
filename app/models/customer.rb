@@ -12,6 +12,9 @@ class Customer < ApplicationRecord
   has_many :favorite_recipes, through: :favorites, source: :recipe
   has_many :view_counts, dependent: :destroy
 
+  validates :name, length: {minimum: 2, maximum: 20}, uniqueness: true
+  validates :introduction, length: {maximum: 60}
+
   def get_profile_image
     if profile_image.attached?
       profile_image

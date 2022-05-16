@@ -1,7 +1,8 @@
 <div class="container">
+  <%= render "layouts/error", object: @food %>
   <div class="row">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
-      <h4 class="text-center my-5">材料の追加</h4>
+      <h4 class="text-center my-5">材料の追加(1人分)</h4>
 
       <%= form_with model: @food, url: recipe_foods_path(params[:recipe_id]) do |f| %>
         <%= f.hidden_field :recipe_id %>

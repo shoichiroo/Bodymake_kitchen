@@ -6,7 +6,9 @@
       </div>
       <h4 class="mb-5"><%= @customer.name %></h4>
       <p><%= @customer.introduction %></p>
-      <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+      <% if (@customer.name != "guestuser") && (@customer == current_customer) %>
+        <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+      <% end %>
     </div>
   </div>
   <div class="row mb-3">

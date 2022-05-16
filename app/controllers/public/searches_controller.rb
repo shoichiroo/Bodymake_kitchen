@@ -1,4 +1,6 @@
 class Public::SearchesController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     if params[:name].present? && params[:category].present?
       @name = params[:name]
