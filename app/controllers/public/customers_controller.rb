@@ -38,6 +38,10 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path, notice: "ゲストログインしました"
   end
 
+  def index
+    redirect_to new_customer_registration_path
+  end
+
   private
 
   def customer_params

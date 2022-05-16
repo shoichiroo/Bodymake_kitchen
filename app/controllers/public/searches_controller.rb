@@ -17,5 +17,11 @@ class Public::SearchesController < ApplicationController
     end
   end
 
+  def search_tag
+    @tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @recipes = @tag.recipes.page(params[:page])
+  end
+
 
 end

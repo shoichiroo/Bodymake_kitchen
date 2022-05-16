@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="sticky-top">
       <% if request.fullpath.include? "admin"  %>
         <%= render "layouts/admin_header" %>
       <% else%>
