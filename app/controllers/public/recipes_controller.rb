@@ -53,7 +53,9 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
+    tag_list=params[:recipe][:tag_names].split("#")
     if @recipe.update(recipe_params)
+      @recipe.tags_save(tag_list)
       redirect_to recipe_path(@recipe), notice: "レシピを編集しました"
     else
       @categories = Category.all
@@ -65,6 +67,10 @@ class Public::RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
     recipe.destroy
     redirect_to root_path, notice: "レシピを削除しました"
+  end
+
+  def index
+    redirect_to new_recipe_path
   end
 
   private

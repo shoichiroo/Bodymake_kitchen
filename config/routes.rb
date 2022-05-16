@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     get "favorites" => "favorites#index"
     get "reviews" => "reviews#index"
     get "search_tag" => "searches#search_tag"
-    resources :customers, only: [:show, :edit, :update]
-    resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy] do
+    resources :customers, only: [:show, :edit, :update, :index]
+    resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
       resources :foods, only: [:new, :create, :destroy]
       resources :procedures, only: [:new, :create, :destroy]
       resources :reviews, only: [:create, :destroy]
