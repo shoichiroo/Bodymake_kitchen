@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     patch "customers/withdraw"
     get "favorites" => "favorites#index"
     get "reviews" => "reviews#index"
+    get "search_tag" => "searches#search_tag"
     resources :customers, only: [:show, :edit, :update]
     resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy] do
       resources :foods, only: [:new, :create, :destroy]

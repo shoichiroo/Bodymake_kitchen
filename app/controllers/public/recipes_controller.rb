@@ -24,7 +24,9 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.customer_id = current_customer.id
+    tag_list = params[:recipe][:tag_names].split("#")
     if @recipe.save
+      @recipe.tags_save(tag_list)
       redirect_to recipe_path(@recipe), notice: "レシピを投稿しました"
     else
       @categories = Category.all
@@ -42,6 +44,7 @@ class Public::RecipesController < ApplicationController
     @procedures = @recipe.procedures
     @foods = @recipe.foods
     @customer = @recipe.customer
+    @tags = @recipe.tags
   end
 
   def edit

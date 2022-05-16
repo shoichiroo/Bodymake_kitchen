@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-5">
       <h4 class="mb-2"><strong><%= @recipe.name %></strong></h4>
-      <div id="star-average-<%= @recipe.id %>"></div>
+      <div id="star-average-<%= @recipe.id %>" class="d-inline"></div>
         <script>
           $("#star-average-<%= @recipe.id %>").empty();
           $("#star-average-<%= @recipe.id %>").raty({
@@ -21,16 +21,23 @@
         });
         </script>
         <span>(<%= @recipe.reviews.count %>件)</span>
+      <div>
+        <% @tags.each do |tag| %>
+          <%= link_to search_tag_path(tag_id: tag.id) do %>
+            <span class="text-dark">#<%= tag.tag_name %></span>
+          <% end %>
+        <% end %>
+      </div>
       <% if @customer != current_customer %>
       <div class="mt-5" id="favorite_buttons_<%= @recipe.id %>">
         <%= render "public/favorites/favorite", recipe: @recipe %>
       </div>
       <% end %>
       <div class="border border-secondary rounded mt-5 mb-4">
-        <p>カロリー <%= @recipe.calorie %>kcal</p>
-        <p>たんぱく質 <%= @recipe.protein %>g</p>
-        <p>脂質 <%= @recipe.fat %>g</p>
-        <p>炭水化物 <%= @recipe.carbo %>g</p>
+        <p><i class="fas fa-fire"></i> カロリー <%= @recipe.calorie %>kcal</p>
+        <p><i class="fas fa-drumstick-bite"></i> たんぱく質 <%= @recipe.protein %>g</p>
+        <p><i class="fas fa-fish"></i> 脂質 <%= @recipe.fat %>g</p>
+        <p><i class="fas fa-bread-slice"></i> 炭水化物 <%= @recipe.carbo %>g</p>
       </div>
       <p class="mb-5"><%= @recipe.description %></p>
       <div style="display: flex; justify-content: space-between">
@@ -127,7 +134,7 @@
       <% end %>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-md-12">
       <%= paginate @reviews %>
     </div>
