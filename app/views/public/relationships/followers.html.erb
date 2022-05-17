@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="row mt-5 border-bottom">
+    <div class="col-md-12">
+      <h4>フォローされている人 <%= @customer.followers.count %></h4>
+    </div>
+  </div>
+  <%= render "index", customers: @customers %>
+</div>

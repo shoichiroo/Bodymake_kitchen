@@ -11,6 +11,10 @@ class Customer < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorite_recipes, through: :favorites, source: :recipe
   has_many :view_counts, dependent: :destroy
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
+  has_many :followings, through: :active_relationships, source: :follower
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
+  has_many :followers, through: :passive_relationships, source: :following
 
   validates :name, length: {minimum: 2, maximum: 20}, uniqueness: true
   validates :introduction, length: {maximum: 60}
@@ -32,5 +36,10 @@ class Customer < ApplicationRecord
       customer.password = SecureRandom.urlsafe_base64
       customer.name = "guestuser"
     end
+  end
+
+  # ユーザーがフォロー済みかどうか判定
+  def followed_by?(customer)
+    passive_relationships.find_by(following_id: customer.id).present?
   end
 end

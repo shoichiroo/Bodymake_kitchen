@@ -1,2 +1,25 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.custom-form-group {
+  display: flex;
+  flex-wrap: wrap;
+
+  label {
+    width: 100%;
+  }
+
+  input, textarea, select {
+    width: 91%;
+  }
+}
+
+.recipe-component {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer-follow-list {
+  display: flex;
+  justify-content: space-between;
+}
