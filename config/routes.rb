@@ -27,7 +27,11 @@ Rails.application.routes.draw do
     get "favorites" => "favorites#index"
     get "reviews" => "reviews#index"
     get "search_tag" => "searches#search_tag"
-    resources :customers, only: [:show, :edit, :update, :index]
+    resources :customers, only: [:show, :edit, :update, :index] do
+      resource :relationships, only: [:create, :destroy]
+      get "follows" => "relationships#follows"
+      get "followers" => "relationships#followers"
+    end
     resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
       resources :foods, only: [:new, :create, :destroy]
       resources :procedures, only: [:new, :create, :destroy]

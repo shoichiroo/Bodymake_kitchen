@@ -29,7 +29,12 @@
       <% else %>
       <li class="nav-item active">
         <%= link_to customers_guest_sign_in_path, method: :post, class: "nav-link" do %>
-          <i class="fas fa-user-circle"></i> <strong>ゲストログイン</strong>
+          <i class="fas fa-user-circle"></i> <strong>ゲストログイン(企業様)</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to new_admin_session_path, class: "nav-link" do %>
+          <i class="fas fa-user-circle"></i> <strong>管理者ログイン(企業様)</strong>
         <% end %>
       </li>
       <li class="nav-item active">

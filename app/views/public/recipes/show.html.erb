@@ -34,10 +34,22 @@
       </div>
       <% end %>
       <div class="border border-secondary rounded mt-5 mb-4">
-        <p><i class="fas fa-fire"></i> カロリー <%= @recipe.calorie %>kcal</p>
-        <p><i class="fas fa-drumstick-bite"></i> たんぱく質 <%= @recipe.protein %>g</p>
-        <p><i class="fas fa-fish"></i> 脂質 <%= @recipe.fat %>g</p>
-        <p><i class="fas fa-bread-slice"></i> 炭水化物 <%= @recipe.carbo %>g</p>
+        <div class="recipe-component">
+          <p><i class="fas fa-fire"></i> カロリー</p>
+          <p><%= @recipe.calorie %>kcal</p>
+        </div>
+        <div class="recipe-component">
+          <p><i class="fas fa-drumstick-bite"></i> たんぱく質</p>
+          <p><%= @recipe.protein %>g</p>
+        </div>
+        <div class="recipe-component">
+          <p><i class="fas fa-fish"></i> 脂質</p>
+          <p><%= @recipe.fat %>g</p>
+        </div>
+        <div class="recipe-component">
+          <p><i class="fas fa-bread-slice"></i> 炭水化物</p>
+          <p><%= @recipe.carbo %>g</p>
+        </div>
       </div>
       <p class="mb-5"><%= @recipe.description %></p>
       <div style="display: flex; justify-content: space-between">
@@ -139,16 +151,27 @@
       <%= paginate @reviews %>
     </div>
   </div>
-  <%= link_to customer_path(@customer), class: "text-dark text-decoration-none" do %>
   <div class="row my-5">
     <div class="col-md-12  border border-secondary rounded">
-      <h4 class="my-3">このレシピの作成者</h4>
-      <div style="width: 100px; height: 100px;">
-        <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
+      <%= link_to customer_path(@customer), class: "text-dark text-decoration-none" do %>
+        <h4 class="my-3">このレシピの作成者</h4>
+      <% end %>
+      <div class="mt-3">
+      <% if current_customer != @customer %>
+        <% if @customer.followed_by?(current_customer) %>
+          <p><%=link_to "フォロー中", customer_relationships_path(@customer), method: :delete, class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+        <% else %>
+          <p><%=link_to "フォローする", customer_relationships_path(@customer), method: :post, class: "btn btn-outline-warning btn-{themecolor} rounded-pill" %></p>
+        <% end %>
+      <% end %>
       </div>
-      <h4 class="mb-5"><%= @customer.name %></h4>
-      <p><%= @customer.introduction %></p>
+      <%= link_to customer_path(@customer), class: "text-dark text-decoration-none" do %>
+        <div style="width: 100px; height: 100px;">
+          <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
+        </div>
+        <h4 class="mb-5"><%= @customer.name %></h4>
+        <p><%= @customer.introduction %></p>
+      <% end %>
     </div>
   </div>
-  <% end %>
 </div>

@@ -1,26 +1,47 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-12  border border-secondary rounded">
+      <div class="mt-3">
+      <% if current_customer != @customer %>
+        <% if @customer.followed_by?(current_customer) %>
+          <p><%=link_to "フォロー中", customer_relationships_path(@customer), method: :delete, class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+        <% else %>
+          <p><%=link_to "フォローする", customer_relationships_path(@customer), method: :post, class: "btn btn-outline-warning btn-{themecolor} rounded-pill" %></p>
+        <% end %>
+      <% end %>
+      </div>
       <div style="width: 100px; height: 100px;">
         <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
       </div>
-      <h4 class="mb-5"><%= @customer.name %></h4>
-      <p><%= @customer.introduction %></p>
+      <h4 class="mb-2"><%= @customer.name %></h4>
+      <span>
+        <%= link_to customer_follows_path(@customer), class: "text-dark" do %>
+          <i class="fas fa-user-friends"></i> フォロー
+        <% end %>
+      </span> |
+      <span>
+        <%= link_to customer_followers_path(@customer), class: "text-dark" do %>
+          <i class="fas fa-user-friends"></i> フォロワー
+        <% end %>
+      </span>
+      <p class="mt-5"><%= @customer.introduction %></p>
       <% if (@customer.name != "guestuser") && (@customer == current_customer) %>
         <p><%= link_to "プロフィール編集", edit_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
       <% end %>
     </div>
   </div>
-  <div class="row mb-3">
-    <div class="col-md-12">
-      <h4><%= @customer.name %>さんのお気に入りレシピ</h4>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active text-secondary" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><strong><%= @customer.name %>さんのお気に入りレシピ</strong></a>
+      <a class="nav-item nav-link text-secondary" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><strong><%= @customer.name %>さんが投稿したレシピ</strong></a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <%= render "public/recipes/index", recipes: @favorite_recipes %>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <%= render "public/recipes/index", recipes: @recipes %>
     </div>
   </div>
-  <%= render "public/recipes/index", recipes: @favorite_recipes %>
-  <div class="row mt-5 mb-3">
-    <div class="col-md-12">
-      <h4><%= @customer.name %>さんが投稿したレシピ</h4>
-    </div>
-  </div>
-  <%= render "public/recipes/index", recipes: @recipes %>
 </div>
