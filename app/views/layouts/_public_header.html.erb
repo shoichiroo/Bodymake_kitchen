@@ -21,6 +21,19 @@
           <i class="fas fa-utensils"></i> <strong>レシピ投稿</strong>
         <% end %>
       </li>
+      <% if unchecked_notifications.any? %>
+        <li class="nav-item active">
+          <%= link_to notifications_path, class: "nav-link", style: "color: tomato;" do %>
+            <i class="fas fa-bell"></i> <strong>通知</strong>
+          <% end %>
+        </li>
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to notifications_path, class: "nav-link" do %>
+            <i class="fas fa-check"></i> <strong>通知</strong>
+          <% end %>
+        </li>
+      <% end %>
       <li class="nav-item active">
         <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link" do %>
           <i class="fas fa-sign-out-alt"></i> <strong>ログアウト</strong>

@@ -12,6 +12,7 @@ class Public::FavoritesController < ApplicationController
     favorite.customer_id = current_customer.id
     favorite.recipe_id = @recipe.id
     favorite.save
+    @recipe.create_notification_favorite!(current_customer)
   end
 
   def destroy

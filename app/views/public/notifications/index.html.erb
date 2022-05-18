@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
+      <h4 class="text-center">通知</h4>
+        <%= link_to notification_path(@notifications), method: :delete, class: "text-dark" do %>
+          <i class="fas fa-trash"></i>
+          <h7>全削除</h7>
+        <% end %>
+        <hr>
+      <% if @notifications.exists? %>
+        <%= render @notifications %>
+      <% else %>
+        <p>通知はありません</p>
+      <% end %>
+    </div>
+    <div class="offset-lg-4 offset-md-3 offset-sm-2 offset-2"></div>
+  </div>
+</div>

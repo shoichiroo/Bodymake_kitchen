@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'notifications/index'
+  end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -40,5 +43,6 @@ Rails.application.routes.draw do
     end
     resources :searches, only: [:index]
     resources :view_counts, only: [:index]
+    resources :notifications, only: [:index, :destroy]
   end
 end
