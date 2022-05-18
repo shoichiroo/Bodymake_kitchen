@@ -1,26 +1,18 @@
 <div class="container">
-  <div class="row justify-content-center mx-auto">
-    <div class="notification_box">
-      <h4 class="text-center"><i class="fas fa-bell"></i>通知</h4>
-      <p class="text-right"><i class="fas fa-trash"></i>
-        <%= link_to "全削除", notification_path(@notifications), method: :delete, class: "btn btn-light" %>
-      </p>
-      <% if @notifications.exists? %>
-        <% @notifications.each do |notification| %>
-          <%= render partial: "notification", locals: {notification: notification} %>
+  <div class="row mt-5">
+    <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
+      <h4 class="text-center">通知</h4>
+        <%= link_to notification_path(@notifications), method: :delete, class: "text-dark" do %>
+          <i class="fas fa-trash"></i>
+          <h7>全削除</h7>
         <% end %>
+        <hr>
+      <% if @notifications.exists? %>
+        <%= render @notifications %>
       <% else %>
         <p>通知はありません</p>
       <% end %>
-　　</div>
+    </div>
+    <div class="offset-lg-4 offset-md-3 offset-sm-2 offset-2"></div>
   </div>
 </div>
-
-<style>
-.notification_box {
-    padding: 0.5em 2em 0.5em 1em;
-    margin: 2em 0;
-    background: #f0f7ff;
-    border: dashed 2px #5b8bd0;
-}
-</style>

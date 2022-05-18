@@ -17,9 +17,9 @@ class Public::ReviewsController < ApplicationController
     review = Review.new(review_params)
     review.customer_id = current_customer.id
     review.recipe_id = @recipe.id
-    @review_recipe = review.recipe
+    review_recipe = review.recipe
     if review.save
-      @review_recipe.create_notification_review!(current_customer, review.id)
+      review_recipe.create_notification_review!(current_customer, review.id)
       redirect_to request.referer, notice: "レビューを投稿しました"
     else
       redirect_to request.referer
