@@ -1,0 +1,26 @@
+<% visiter = Customer.find(notification.visiter_id) %>
+<% visited = Customer.find(notification.visited_id) %>
+<li>
+  <%= link_to customer_path(visiter) do %>
+    <%= image_tag visiter.profile_image, size: "50x50" %>
+    <strong><%= visiter.name %></strong>
+  <% end %>さんが
+
+  <% case notification.action when "follow" then %>
+    あなたをフォローしました
+  <% when "favorite" then %>
+    <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>
+    にいいねしました
+  <% when "review" then %>
+    <% if notification.recipe.customer_id == notification.visited_id %>
+      <%= link_to "あなたの投稿", notification.recipe, style: "font-weight: bold;" %>
+    <% else %>
+      <%= link_to recipe_path(notification.recipe) do %>
+        <%= image_tag notification.recipe.customer.profile_image, size: "50x50" %>
+        <strong><%= notification.recipe.customer.name + "さんの投稿" %></strong>
+      <% end %>
+    <% end %>
+    にコメントしました
+  <% end %>
+</li>
+<div class="small text-muted text-right"><%= time_ago_in_words(notification.created_at).upcase %>前</div>
