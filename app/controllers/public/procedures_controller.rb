@@ -22,7 +22,13 @@ class Public::ProceduresController < ApplicationController
     redirect_to request.referer
   end
 
+  def index
+    redirect_to new_recipe_procedure_path(params[:recipe_id])
+  end
+
+
   private
+
 
   def procedure_params
     params.require(:procedure).permit(:description, :recipe_id)

@@ -4,5 +4,9 @@
       <h4>フォローされている人 <%= @customer.followers.count %></h4>
     </div>
   </div>
-  <%= render "index", customers: @customers %>
+  <% if @customers.present? %>
+    <%= render "index", customers: @customers %>
+  <% else %>
+    <p class="mt-4">フォロワーがいません</p>
+  <% end %>
 </div>
