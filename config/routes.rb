@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'notifications/index'
-  end
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -36,13 +34,14 @@ Rails.application.routes.draw do
       get "followers" => "relationships#followers"
     end
     resources :recipes, only: [:new, :create, :show, :edit, :update, :destroy, :index] do
-      resources :foods, only: [:new, :create, :destroy]
-      resources :procedures, only: [:new, :create, :destroy]
+      resources :foods, only: [:new, :create, :destroy, :index]
+      resources :procedures, only: [:new, :create, :destroy, :index]
       resources :reviews, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     resources :searches, only: [:index]
     resources :view_counts, only: [:index]
     resources :notifications, only: [:index, :destroy]
+    resources :contacts, only: [:new, :create, :index]
   end
 end

@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-5">
       <h4 class="mb-2"><strong><%= @recipe.name %></strong></h4>
-      <div id="star-average-<%= @recipe.id %>"></div>
+      <div id="star-average-<%= @recipe.id %>" class="d-inline"></div>
         <script>
           $("#star-average-<%= @recipe.id %>").empty();
           $("#star-average-<%= @recipe.id %>").raty({
@@ -22,10 +22,22 @@
         </script>
         <span>(<%= @recipe.reviews.count %>件)</span>
       <div class="border border-secondary rounded mb-4">
-        <p>カロリー <%= @recipe.calorie %>kcal</p>
-        <p>たんぱく質 <%= @recipe.protein %>g</p>
-        <p>脂質 <%= @recipe.fat %>g</p>
-        <p>炭水化物 <%= @recipe.carbo %>g</p>
+        <div class="recipe-component">
+          <p><i class="fas fa-fire"></i> カロリー</p>
+          <p><%= @recipe.calorie %>kcal</p>
+        </div>
+        <div class="recipe-component">
+          <p><i class="fas fa-drumstick-bite"></i> たんぱく質</p>
+          <p><%= @recipe.protein %>g</p>
+        </div>
+        <div class="recipe-component">
+          <p><i class="fas fa-fish"></i> 脂質</p>
+          <p><%= @recipe.fat %>g</p>
+        </div>
+        <div class="recipe-component">
+          <p><i class="fas fa-bread-slice"></i> 炭水化物</p>
+          <p><%= @recipe.carbo %>g</p>
+        </div>
       </div>
       <p class="mb-5"><%= @recipe.description %></p>
       <p><%= link_to "削除", admin_recipe_path(@recipe), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-block btn-{themecolor} rounded-pill" %></p>
@@ -41,7 +53,7 @@
       <% end %>
     </div>
     <div class="col-md-5">
-      <h5><strong>材料</strong></h5>
+      <h5><strong>材料(1人分)</strong></h5>
       <% @foods.each do |food| %>
         <div class="border-bottom border-secondary" style="display: flex; justify-content: space-between">
           <p><%= food.name %></p>

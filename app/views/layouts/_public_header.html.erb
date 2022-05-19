@@ -35,6 +35,11 @@
         </li>
       <% end %>
       <li class="nav-item active">
+        <%= link_to new_contact_path(customer_id: current_customer.id), class: "nav-link" do %>
+          <i class="fas fa-envelope"></i> <strong>お問い合わせ</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
         <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link" do %>
           <i class="fas fa-sign-out-alt"></i> <strong>ログアウト</strong>
         <% end %>

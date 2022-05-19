@@ -22,7 +22,13 @@ class Public::FoodsController < ApplicationController
     redirect_to request.referer
   end
 
+  def index
+    redirect_to new_recipe_food_path(params[:recipe_id])
+  end
+
+
   private
+
 
   def food_params
     params.require(:food).permit(:name, :amount, :recipe_id)

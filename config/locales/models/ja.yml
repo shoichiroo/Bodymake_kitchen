@@ -29,3 +29,6 @@ ja:
         description: 手順
       category:
         name: カテゴリー名
+      contact:
+        name: お名前
+        content: お問い合わせ内容

@@ -1,0 +1,24 @@
+<div class="container">
+  <%= render "layouts/error", object: @contact %>
+  <div class="row mt-5">
+    <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+      <h4 class="text-center border-bottom border-warning pb-4">お問い合わせフォーム</h4>
+      <%= form_with model: @contact do |f| %>
+        <div class="form-group mt-5">
+          <%= f.label "お名前" %>
+          <%= f.text_field :name, placeholder: "お名前", class: "form-control" %>
+        </div>
+
+        <div class="form-group my-4">
+          <%= f.label "お問い合わせ内容" %>
+          <%= f.text_area :content, placeholder: "お問い合わせ内容を入力してください", class: "form-control" %>
+        </div>
+
+        <div class="form-group text-center">
+          <%= f.submit "送信", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="offset-lg-3 offset-md-2">
+  </div>
+</div>

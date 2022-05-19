@@ -32,6 +32,11 @@
       </li>
       <% else %>
       <li class="nav-item active">
+        <%= link_to root_path, class: "nav-link" do %>
+          <i class="fas fa-home"></i> <strong>TOP</strong>
+        <% end %>
+      </li>
+      <li class="nav-item active">
         <%= link_to new_admin_session_path, class: "nav-link" do %>
           <i class="fas fa-sign-in-alt"></i> <strong>ログイン</strong>
         <% end %>

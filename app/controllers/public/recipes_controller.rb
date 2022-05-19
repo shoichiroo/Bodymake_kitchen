@@ -73,7 +73,9 @@ class Public::RecipesController < ApplicationController
     redirect_to new_recipe_path
   end
 
+
   private
+
 
   def recipe_params
     params.require(:recipe).permit(:image, :name, :description, :calorie, :protein, :fat, :carbo, :category_id)
