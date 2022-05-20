@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+          <th>会員詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= customer.name %></td>
+          <td><%= customer.email %></td>
+          <% if customer.is_deleted == false %>
+            <td class="text-success">有効</td>
+          <% else %>
+            <td>退会</td>
+          <% end %>
+          <td><%= link_to "詳細", admin_customer_path(customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <%= paginate customers %>
+  </div>
+</div>

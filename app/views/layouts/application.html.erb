@@ -27,6 +27,9 @@
         </button>
       </div>
       <% end %>
+      <% if request.fullpath.include? "admin"  %>
+        <%= render "admin/searches/search" %>
+      <% end %>
     </main>
     <%= yield %>
   </body>

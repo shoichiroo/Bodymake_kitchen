@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :create, :edit, :update]
     resources :reviews, only: [:index, :destroy]
     resources :recipes, only: [:index, :show, :destroy]
+    resources :searches, only: [:index]
   end
 
 
