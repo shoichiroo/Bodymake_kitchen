@@ -7,6 +7,8 @@ class Admin::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
+    @recipes = @customer.recipes.page(params[:page])
+    @reviews = @customer.reviews.page(params[:page]).per(10)
   end
 
   def edit
@@ -19,7 +21,9 @@ class Admin::CustomersController < ApplicationController
     redirect_to admin_customer_path(customer)
   end
 
+
   private
+
 
   def customer_params
     params.require(:customer).permit(:profile_image, :name, :introduction, :is_deleted)

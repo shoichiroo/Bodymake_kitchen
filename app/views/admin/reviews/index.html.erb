@@ -1,45 +1,8 @@
 <div class="container">
-  <div class="row">
+  <div class="row my-5">
     <div class="col-md-12">
-      <h4 class="text-center my-5">レビュー一覧</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>投稿者</th>
-            <th>評価</th>
-            <th>コメント</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @reviews.each do |review| %>
-          <tr>
-            <td><%= link_to review.customer.name, admin_customer_path(review.customer), class: "text-dark" %></td>
-            <td>
-              <div class="mb-4" id="star-rate<%= review.id %>"></div>
-                <script>
-                  $('#star-rate<%= review.id %>').empty();
-                  $('#star-rate<%= review.id %>').raty({
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  half      : false,
-                  readOnly: true,
-                  score: <%= review.star %>,
-                });
-                </script>
-            </td>
-            <td><%= review.comment %></td>
-            <td><%= link_to "削除", admin_review_path(review), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-{themecolor} rounded-pill" %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <h4 class="text-center">レビュー一覧</h4>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <%= paginate @reviews %>
-    </div>
-  </div>
+  <%= render "index", reviews: @reviews %>
 </div>

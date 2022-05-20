@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-12">
+      <h4 class="text-center">「<%= params[:word] %>」の検索結果</h4>
+    </div>
+  </div>
+  <% if @range == "customer" %>
+    <%= render "admin/customers/index", customers: @customers %>
+  <% elsif @range == "recipe" %>
+    <%= render "public/recipes/index", recipes: @recipes %>
+  <% else %>
+    <%= render "admin/reviews/index", reviews: @reviews %>
+  <% end %>
+</div>
