@@ -23,3 +23,44 @@
   display: flex;
   justify-content: space-between;
 }
+
+.show-image {
+  object-fit: cover;
+  height: 635px;
+  width: 635px;
+}
+
+@media screen and (max-width: 1199px) {
+  .show-image {
+    height: 500px;
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .show-image {
+    height: 400px;
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .show-image {
+    height: 384px;
+    width: 384px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .show-image {
+    height: 360px;
+    width: 360px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .show-image {
+    height: 345px;
+    width: 345px;
+  }
+}

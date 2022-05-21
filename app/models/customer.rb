@@ -19,7 +19,7 @@ class Customer < ApplicationRecord
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
   validates :name, length: {minimum: 2, maximum: 20}, uniqueness: true
-  validates :introduction, length: {maximum: 60}
+  validates :introduction, length: {maximum: 200}
 
 
   def get_profile_image

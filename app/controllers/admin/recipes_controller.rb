@@ -15,6 +15,6 @@ class Admin::RecipesController < ApplicationController
   def destroy
     recipe = Recipe.find(params[:id])
     recipe.destroy
-    redirect_to admin_recipes_path
+    redirect_to admin_customer_path(recipe.customer)
   end
 end

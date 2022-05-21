@@ -49,11 +49,12 @@ class Public::RecipesController < ApplicationController
 
   def edit
     @categories = Category.all
+    @tag_list = @recipe.tags.pluck(:tag_name).join("#")
   end
 
   def update
     @recipe = Recipe.find(params[:id])
-    tag_list=params[:recipe][:tag_names].split("#")
+    tag_list = params[:recipe][:tag_names].split("#")
     if @recipe.update(recipe_params)
       @recipe.tags_save(tag_list)
       redirect_to recipe_path(@recipe), notice: "レシピを編集しました"

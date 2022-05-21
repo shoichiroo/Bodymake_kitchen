@@ -36,8 +36,10 @@ class Recipe < ApplicationRecord
     end
 
     tag_list.each do |tag|
-      inspected_tag = Tag.where(tag_name: tag).first_or_create
-      self.tags << inspected_tag
+      unless tag == ""
+        inspected_tag = Tag.where(tag_name: tag).first_or_create
+        self.tags << inspected_tag
+      end
     end
   end
 
