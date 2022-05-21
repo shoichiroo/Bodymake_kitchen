@@ -3,11 +3,11 @@
     <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-4">
       <% if request.fullpath.include? "admin" %>
         <%= link_to admin_recipe_path(recipe) do %>
-          <%= image_tag recipe.image, class: "rounded index-image" %>
+          <%= image_tag recipe.image, class: "rounded index-image mb-2" %>
         <% end %>
       <% else %>
         <%= link_to recipe_path(recipe) do %>
-          <%= image_tag recipe.image, class: "rounded index-image" %>
+          <%= image_tag recipe.image, class: "rounded index-image mb-2" %>
         <% end %>
       <% end %>
         <div class="star-average-<%= recipe.id %> d-inline"></div>

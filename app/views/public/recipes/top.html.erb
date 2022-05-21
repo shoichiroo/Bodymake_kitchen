@@ -30,14 +30,13 @@
     </div>
   </div>
   <div class="row my-5">
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-12">
       <%= form_with url: searches_path, method: :get do |f| %>
-        <%= f.text_field :name, placeholder: "料理名", class: "form-control" %>
-        <%= f.collection_select(:category, @categories, :id, :name, {prompt: "--カテゴリーを選択する--"}, class: "form-control") %>
-        <%= f.submit "レシピを検索", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
+        <%= f.text_field :name, placeholder: "料理名" %>
+        <%= f.collection_select(:category, @categories, :id, :name, {prompt: "カテゴリー"}) %>
+        <%= f.submit "検索", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
       <% end %>
     </div>
-    <div class="offset-md-3"></div>
   </div>
   <div class="row mb-3">
     <div class="col-md-12">

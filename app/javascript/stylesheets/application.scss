@@ -32,15 +32,22 @@
 
 @media screen and (max-width: 1199px) {
   .show-image {
-    height: 500px;
-    width: 500px;
+    height: 530px;
+    width: 530px;
   }
 }
 
 @media screen and (max-width: 991px) {
   .show-image {
-    height: 400px;
-    width: 400px;
+    height: 390px;
+    width: 390px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .show-image {
+    height: 510px;
+    width: 510px;
   }
 }
 
@@ -82,6 +89,13 @@
   .index-image {
     height: 240px;
     width: 240px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .index-image {
+    height: 177px;
+    width: 177px;
   }
 }
 
