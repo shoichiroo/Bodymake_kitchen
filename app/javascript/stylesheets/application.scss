@@ -64,3 +64,44 @@
     width: 345px;
   }
 }
+
+.index-image {
+  object-fit: cover;
+  height: 253px;
+  width: 253px;
+}
+
+@media screen and (max-width: 1199px) {
+  .index-image {
+    height: 210px;
+    width: 210px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .index-image {
+    height: 240px;
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .index-image {
+    height: 177px;
+    width: 177px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .index-image {
+    height: 165px;
+    width: 165px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .index-image {
+    height: 157px;
+    width: 157px;
+  }
+}
