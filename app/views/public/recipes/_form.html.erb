@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
-    <% if controller.controller_name == "recipes" && controller.action_name == "new" %>
+    <% if (controller.controller_name == "recipes" && controller.action_name == "new") || (controller.controller_name == "recipes" && controller.action_name == "index") %>
       <h4 class="text-center my-5" style="width: 90%;">オリジナルレシピを投稿する</h4>
     <% else %>
       <h4 class="text-center my-5" style="width: 90%;">オリジナルレシピを編集する</h4>
@@ -19,7 +19,7 @@
 
       <div class="form-group custom-form-group">
         <%= f.label "キャッチコピー" %>
-        <%= f.text_area :description, placeholder: "60文字以内", class: "form-control" %>
+        <%= f.text_area :description, placeholder: "200文字以内", class: "form-control" %>
       </div>
 
       <div class="form-group custom-form-group">
@@ -51,7 +51,7 @@
         <p>g</p>
       </div>
 
-      <% if controller.controller_name == "recipes" && controller.action_name == "new" %>
+      <% if (controller.controller_name == "recipes" && controller.action_name == "new") || (controller.controller_name == "recipes" && controller.action_name == "index") %>
         <div class="form-group custom-form-group mb-5">
           <%= f.label "タグ付け(複数可)" %>
           <%= f.text_field :tag_names, placeholder: "#で区切ってください(10文字以内)", class: "form-control" %>
@@ -64,7 +64,7 @@
       <% end %>
 
       <div class="form-group custom-form-group">
-        <% if controller.controller_name == "recipes" && controller.action_name == "new" %>
+        <% if (controller.controller_name == "recipes" && controller.action_name == "new") || (controller.controller_name == "recipes" && controller.action_name == "index") %>
           <%= f.submit "レシピを投稿する", class: "btn btn-warning btn-block btn-{themecolor} rounded-pill", style: "width: 90%;" %>
         <% else %>
           <%= f.submit "編集完了", class: "btn btn-warning btn-block btn-{themecolor} rounded-pill", style: "width: 90%;" %>

@@ -15,7 +15,7 @@ class Recipe < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   validates :name, presence: true, length: {maximum: 20}
-  validates :description, presence: true, length: {maximum: 60}
+  validates :description, presence: true, length: {maximum: 200}
   validates :calorie, presence: true
   validates :protein, presence: true
   validates :fat, presence: true

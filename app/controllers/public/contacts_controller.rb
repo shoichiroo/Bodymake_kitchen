@@ -16,7 +16,7 @@ class Public::ContactsController < ApplicationController
   end
 
   def index
-    redirect_to new_contact_path(customer_id: current_customer.id)
+    redirect_to new_contact_path
   end
 
   private

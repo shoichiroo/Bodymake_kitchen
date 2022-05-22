@@ -24,15 +24,14 @@
 
       <% @foods.each do |food| %>
         <div style="display: flex; justify-content: space-between">
-          <p>
-            <%= food.name %>
-            <%= food.amount %>
-          </p>
+          <p class="mr-2"><%= food.name %></p>
+          <p><%= food.amount %></p>
           <p><%= link_to "削除", recipe_food_path(params[:recipe_id], food), method: :delete, class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
         </div>
       <% end %>
-
-      <%= link_to "材料の追加をする", recipe_path(params[:recipe_id]), class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
+      <% if @foods.present? %>
+        <%= link_to "決定", recipe_path(params[:recipe_id]), class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
+      <% end %>
     </div>
     <div class="offset-lg-4 offset-md-3 offset-sm-2 offset-2"></div>
   </div>
