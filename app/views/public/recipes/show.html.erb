@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-7">
-    <!--<div class="col-md-7", style="max-height: 575px; max-width: 575px;">-->
-      <%#= image_tag @recipe.image, style: "height: 100%; width: 100%; padding-left: 1%; object-fit: cover;" %>
-      <%= image_tag @recipe.image, style: "object-fit: cover; height: 635px; width: 100%;" %>
+      <%= image_tag @recipe.image, class: "show-image" %>
     </div>
     <div class="col-md-5">
       <h4 class="mb-2"><strong><%= @recipe.name %></strong></h4>
@@ -33,28 +31,28 @@
         <%= render "public/favorites/favorite", recipe: @recipe %>
       </div>
       <% end %>
-      <div class="border border-secondary rounded mt-5 mb-4">
+      <div class="border border-secondary rounded mt-5 mb-4 px-2">
         <div class="recipe-component">
-          <p><i class="fas fa-fire"></i> カロリー</p>
-          <p><%= @recipe.calorie %>kcal</p>
+          <p><i class="fas fa-fire"></i> <strong>カロリー</strong></p>
+          <p><strong><%= @recipe.calorie %></strong> kcal</p>
         </div>
         <div class="recipe-component">
-          <p><i class="fas fa-drumstick-bite"></i> たんぱく質</p>
-          <p><%= @recipe.protein %>g</p>
+          <p><i class="fas fa-drumstick-bite"></i> <strong>たんぱく質</strong></p>
+          <p><strong><%= @recipe.protein %></strong> g</p>
         </div>
         <div class="recipe-component">
-          <p><i class="fas fa-fish"></i> 脂質</p>
-          <p><%= @recipe.fat %>g</p>
+          <p><i class="fas fa-fish"></i> <strong>脂質</strong></p>
+          <p><strong><%= @recipe.fat %></strong> g</p>
         </div>
         <div class="recipe-component">
-          <p><i class="fas fa-bread-slice"></i> 炭水化物</p>
-          <p><%= @recipe.carbo %>g</p>
+          <p><i class="fas fa-bread-slice"></i> <strong>炭水化物</strong></p>
+          <p><strong><%= @recipe.carbo %></strong> g</p>
         </div>
       </div>
       <p class="mb-5"><%= @recipe.description %></p>
       <div style="display: flex; justify-content: space-between">
         <% if @customer == current_customer %>
-          <p><%= link_to "レシピ編集", edit_recipe_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+          <p><%= link_to "編集", edit_recipe_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
           <p><%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
         <% end %>
       </div>
@@ -63,9 +61,9 @@
   <div class="row mb-5">
     <div class="col-md-7">
       <div style="display: flex; justify-content: space-between">
-        <h5><strong>手順</strong></h5>
+        <h5 class="mb-4"><strong>手順</strong></h5>
         <% if @customer == current_customer %>
-          <p><%= link_to "手順を追加", new_recipe_procedure_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+          <p><%= link_to "手順を編集", new_recipe_procedure_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         <% end %>
       </div>
       <% @procedures.each.with_index(1) do |procedure, i| %>
@@ -76,9 +74,9 @@
     </div>
     <div class="col-md-5">
       <div style="display: flex; justify-content: space-between">
-        <h5><strong>材料(1人分)</strong></h5>
+        <h5 class="mb-4"><strong>材料(1人分)</strong></h5>
         <% if @customer == current_customer %>
-          <p><%= link_to "材料を追加", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+          <p><%= link_to "材料を編集", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         <% end %>
       </div>
       <% @foods.each do |food| %>
@@ -110,7 +108,7 @@
         </script>
 
         <div class="form-group">
-          <%= f.text_area :comment, class: "form-control" %>
+          <%= f.text_area :comment, placeholder: "200文字以内", class: "form-control" %>
         </div>
 
         <div class="form-group">

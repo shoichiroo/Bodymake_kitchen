@@ -6,7 +6,7 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.page(params[:page]).order(created_at: :desc)
     @categories = Category.all
     @favorite_recipes = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.first(4)
-    @view_count_recipes = Recipe.find(ViewCount.group(:recipe_id).order("count(recipe_id) desc").limit(4).pluck(:recipe_id))
+    @view_count_recipes = Recipe.includes(:view_counted_customers).sort {|a,b| b.view_counted_customers.size <=> a.view_counted_customers.size}.first(4)
     @star_recipes = Recipe.left_joins(:reviews).distinct.sort_by do |recipe|
                       if recipe.reviews.present?
                         recipe.reviews.map(&:star).sum
@@ -14,6 +14,9 @@ class Public::RecipesController < ApplicationController
                         0
                       end
                     end.reverse.first(4)
+    @favorite_first_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.first
+    @favorite_second_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.second
+    @favorite_third_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.third
   end
 
   def new
@@ -49,11 +52,12 @@ class Public::RecipesController < ApplicationController
 
   def edit
     @categories = Category.all
+    @tag_list = @recipe.tags.pluck(:tag_name).join("#")
   end
 
   def update
     @recipe = Recipe.find(params[:id])
-    tag_list=params[:recipe][:tag_names].split("#")
+    tag_list = params[:recipe][:tag_names].split("#")
     if @recipe.update(recipe_params)
       @recipe.tags_save(tag_list)
       redirect_to recipe_path(@recipe), notice: "レシピを編集しました"
