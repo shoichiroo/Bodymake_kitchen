@@ -1,6 +1,15 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
+  <div class="row my-4">
+    <div class="col-md-12">
+      <%= form_with url: searches_path, method: :get do |f| %>
+        <%= f.text_field :name, placeholder: "料理名" %>
+        <%= f.collection_select(:category, @categories, :id, :name, {prompt: "カテゴリー"}) %>
+        <%= f.submit "検索", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-7">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -9,13 +18,19 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-             <%= image_tag "ryori.jpg", style: "display: block; object-fit: cover; height: 400px; width: 100%;" %>
+            <%= link_to recipe_path(@favorite_first_recipe) do %>
+              <%= image_tag @favorite_first_recipe.image, class: "rounded slide-image" %>
+            <% end %>
           </div>
           <div class="carousel-item">
-            <%= image_tag "bento.jpg", style: "display: block; object-fit: cover; height: 400px; width: 100%;" %>
+            <%= link_to recipe_path(@favorite_second_recipe) do %>
+              <%= image_tag @favorite_second_recipe.image, class: "rounded slide-image" %>
+            <% end %>
           </div>
           <div class="carousel-item">
-            <%= image_tag "washoku.jpg", style: "display: block; object-fit: cover; height: 400px; width: 100%;" %>
+            <%= link_to recipe_path(@favorite_third_recipe) do %>
+              <%= image_tag @favorite_third_recipe.image, class: "rounded slide-image" %>
+            <% end %>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -28,19 +43,17 @@
         </a>
       </div>
     </div>
-  </div>
-  <div class="row my-5">
-    <div class="col-md-12">
-      <%= form_with url: searches_path, method: :get do |f| %>
-        <%= f.text_field :name, placeholder: "料理名" %>
-        <%= f.collection_select(:category, @categories, :id, :name, {prompt: "カテゴリー"}) %>
-        <%= f.submit "検索", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
-      <% end %>
+    <div class="col-md-5">
+      <div class="border">
+        <h4 class="text-center">Bodymake Kitchen<i class="fas fa-dumbbell"></i></h4>
+        <p class="text-center">Bodymake Kitchenは健康的に<br>ダイエットしたい人に向けた<br>レシピ投稿・検索サイトです</p>
+        <p class="text-center">レシピの詳細や検索機能を<br>利用するにはユーザー登録してください</p>
+      </div>
     </div>
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4><i class="fas fa-crown"></i> みんなが評価したレシピランキング</h4>
+      <h4><i class="fas fa-crown" style="color: #f7cb00;"></i> <strong>評価が高いレシピランキング</strong></h4>
     </div>
   </div>
   <%= render "rank", recipes: @star_recipes %>
@@ -53,7 +66,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4><i class="fas fa-crown"></i> みんなのお気に入りレシピランキング</h4>
+      <h4><i class="fas fa-crown" style="color: #f7cb00;"></i> <strong>みんなのお気に入りレシピランキング</strong></h4>
     </div>
   </div>
   <%= render "rank", recipes: @favorite_recipes %>
@@ -66,7 +79,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4><i class="fas fa-crown"></i> アクセス数ランキング</h4>
+      <h4><i class="fas fa-crown" style="color: #f7cb00;"></i> <strong>アクセス数が多いレシピランキング</strong></h4>
     </div>
   </div>
   <%= render "rank", recipes: @view_count_recipes %>
@@ -79,7 +92,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4>新着レシピ</h4>
+      <h4><strong>新着レシピ</strong></h4>
     </div>
   </div>
   <%= render "index", recipes: @recipes %>

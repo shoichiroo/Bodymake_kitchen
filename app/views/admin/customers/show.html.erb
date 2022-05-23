@@ -1,37 +1,13 @@
-<div class="cantainer">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <h4 class="text-center my-5"><%= @customer.name %>さんの会員詳細</h4>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td>会員ID</td>
-            <td><%= @customer.id %></td>
-          </tr>
-          <tr>
-            <td>氏名</td>
-            <td><%= @customer.name %></td>
-          </tr>
-          <tr>
-            <td>自己紹介文</td>
-            <td><%= @customer.introduction %></td>
-          </tr>
-          <tr>
-            <td>会員ステータス</td>
-            <% if @customer.is_deleted == false %>
-              <td class="text-success">有効</td>
-            <% else %>
-              <td>退会</td>
-            <% end %>
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-12 border border-secondary rounded">
+      <div style="width: 100px; height: 100px;">
+        <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
+      </div>
+      <h4 class="mb-2"><%= @customer.name %></h4>
+      <p class="mt-5"><%= @customer.introduction %></p>
+      <p><%= link_to "プロフィール編集", edit_admin_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
     </div>
-    <div class="offset-md-3"></div>
   </div>
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">

@@ -31,22 +31,22 @@
         <%= render "public/favorites/favorite", recipe: @recipe %>
       </div>
       <% end %>
-      <div class="border border-secondary rounded mt-5 mb-4">
+      <div class="border border-secondary rounded mt-5 mb-4 px-2">
         <div class="recipe-component">
-          <p><i class="fas fa-fire"></i> カロリー</p>
-          <p><%= @recipe.calorie %>kcal</p>
+          <p><i class="fas fa-fire"></i> <strong>カロリー</strong></p>
+          <p><strong><%= @recipe.calorie %></strong> kcal</p>
         </div>
         <div class="recipe-component">
-          <p><i class="fas fa-drumstick-bite"></i> たんぱく質</p>
-          <p><%= @recipe.protein %>g</p>
+          <p><i class="fas fa-drumstick-bite"></i> <strong>たんぱく質</strong></p>
+          <p><strong><%= @recipe.protein %></strong> g</p>
         </div>
         <div class="recipe-component">
-          <p><i class="fas fa-fish"></i> 脂質</p>
-          <p><%= @recipe.fat %>g</p>
+          <p><i class="fas fa-fish"></i> <strong>脂質</strong></p>
+          <p><strong><%= @recipe.fat %></strong> g</p>
         </div>
         <div class="recipe-component">
-          <p><i class="fas fa-bread-slice"></i> 炭水化物</p>
-          <p><%= @recipe.carbo %>g</p>
+          <p><i class="fas fa-bread-slice"></i> <strong>炭水化物</strong></p>
+          <p><strong><%= @recipe.carbo %></strong> g</p>
         </div>
       </div>
       <p class="mb-5"><%= @recipe.description %></p>
@@ -61,7 +61,7 @@
   <div class="row mb-5">
     <div class="col-md-7">
       <div style="display: flex; justify-content: space-between">
-        <h5><strong>手順</strong></h5>
+        <h5 class="mb-4"><strong>手順</strong></h5>
         <% if @customer == current_customer %>
           <p><%= link_to "手順を編集", new_recipe_procedure_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         <% end %>
@@ -74,7 +74,7 @@
     </div>
     <div class="col-md-5">
       <div style="display: flex; justify-content: space-between">
-        <h5><strong>材料(1人分)</strong></h5>
+        <h5 class="mb-4"><strong>材料(1人分)</strong></h5>
         <% if @customer == current_customer %>
           <p><%= link_to "材料を編集", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         <% end %>

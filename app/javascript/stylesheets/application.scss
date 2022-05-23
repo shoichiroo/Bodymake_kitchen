@@ -123,3 +123,51 @@
 .field_with_errors {
   display: contents;
 }
+
+.slide-image {
+  object-fit: cover;
+  height: 635px;
+  width: 635px;
+}
+
+@media screen and (max-width: 1199px) {
+  .slide-image {
+    height: 530px;
+    width: 530px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .slide-image {
+    height: 390px;
+    width: 390px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .slide-image {
+    height: 510px;
+    width: 510px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .slide-image {
+    height: 384px;
+    width: 384px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .slide-image {
+    height: 360px;
+    width: 360px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .slide-image {
+    height: 345px;
+    width: 345px;
+  }
+}
