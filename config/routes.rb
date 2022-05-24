@@ -44,5 +44,6 @@ Rails.application.routes.draw do
     resources :view_counts, only: [:index]
     resources :notifications, only: [:index, :destroy]
     resources :contacts, only: [:new, :create, :index]
+    resources :news, only: [:index]
   end
 end
