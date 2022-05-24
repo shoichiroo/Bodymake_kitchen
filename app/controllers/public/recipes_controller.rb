@@ -14,9 +14,12 @@ class Public::RecipesController < ApplicationController
                         0
                       end
                     end.reverse.first(4)
-    @favorite_first_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.first
-    @favorite_second_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.second
-    @favorite_third_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.third
+    require "news-api"
+    news = News.new(ENV["NEWS_API_KEY"])
+    @news = news.get_everything(q: "%E3%83%80%E3%82%A4%E3%82%A8%E3%83%83%E3%83%88", sortBy: "publishedAt", domains: "allabout.co.jp, cookpad.com, getnews.jp, toyokeizai.net, diamond.jp, nlab.itmedia.co.jp, gendai.ismedia.jp, youpouch.com, curazy.com, prtimes.jp", pageSize: 4)
+    # @favorite_first_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.first
+    # @favorite_second_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.second
+    # @favorite_third_recipe = Recipe.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}.third
   end
 
   def new

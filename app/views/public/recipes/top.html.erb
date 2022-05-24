@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="row mb-5">
-    <div class="col-md-7">
+    <div class="col-md-5">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -18,19 +18,13 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <%= link_to recipe_path(@favorite_first_recipe) do %>
-              <%= image_tag @favorite_first_recipe.image, class: "rounded slide-image" %>
-            <% end %>
+            <%= image_tag "bento.jpg", class: "rounded slide-image" %>
           </div>
           <div class="carousel-item">
-            <%= link_to recipe_path(@favorite_second_recipe) do %>
-              <%= image_tag @favorite_second_recipe.image, class: "rounded slide-image" %>
-            <% end %>
+            <%= image_tag "ryori.jpg", class: "rounded slide-image" %>
           </div>
           <div class="carousel-item">
-            <%= link_to recipe_path(@favorite_third_recipe) do %>
-              <%= image_tag @favorite_third_recipe.image, class: "rounded slide-image" %>
-            <% end %>
+            <%= image_tag "washoku.jpg", class: "rounded slide-image" %>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -43,11 +37,23 @@
         </a>
       </div>
     </div>
-    <div class="col-md-5">
-      <div class="border">
-        <h4 class="text-center">Bodymake Kitchen<i class="fas fa-dumbbell"></i></h4>
-        <p class="text-center">Bodymake Kitchenは健康的に<br>ダイエットしたい人に向けた<br>レシピ投稿・検索サイトです</p>
-        <p class="text-center">レシピの詳細や検索機能を<br>利用するにはユーザー登録してください</p>
+    <div class="col-md-7">
+      <div class="border px-2 py-2">
+        <% @news.each do |news| %>
+          <div class="border-bottom border-dark pb-3 mb-3" style="display: flex;">
+          <% if news.urlToImage.present? %>
+            <%= image_tag news.urlToImage, style: "height: 68px; width: 68px;" %>
+          <% else %>
+            <%= image_tag "no_image", style: "height: 68px; width: 68px;" %>
+          <% end %>
+          <h6 class="ml-2"><%= news.title.truncate(55) %></h6>
+          </div>
+        <% end %>
+        <div class="text-right">
+          <%= link_to news_index_path, class: "text-secondary" do %>
+            他の記事も見る <i class="fas fa-angle-right"></i>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

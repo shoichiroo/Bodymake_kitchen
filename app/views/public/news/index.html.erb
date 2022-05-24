@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h4 class="text-center">ダイエットに関する記事</h4>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <% @news.each do |news| %>
+      <div class="col-md-8 offset-md-2 border-bottom border-dark pb-3 mb-3">
+        <div style="display: flex;">
+          <% if news.urlToImage.present? %>
+            <%= image_tag news.urlToImage, style: "height: 70px; width: 70px;" %>
+          <% else %>
+            <%= image_tag "no_image", style: "height: 70px; width: 70px;" %>
+          <% end %>
+          <h6 class="ml-2"><%= news.title %></h6>
+        </div>
+      </div>
+      <div class="offset-md-2"></div>
+    <% end %>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      Powered by <%= link_to "https://newsapi.org" do %>　News API　<% end %>
+    </div>
+    <div class="offset-md-2"></div>
+  </div>
+</div>
