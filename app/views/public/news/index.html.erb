@@ -8,12 +8,14 @@
     <% @news.each do |news| %>
       <div class="col-md-8 offset-md-2 border-bottom border-dark pb-3 mb-3">
         <div style="display: flex;">
-          <% if news.urlToImage.present? %>
-            <%= image_tag news.urlToImage, style: "height: 70px; width: 70px;" %>
-          <% else %>
-            <%= image_tag "no_image", style: "height: 70px; width: 70px;" %>
+          <%= link_to news.url, target: :_blank, rel: "noopener noreferrer" do %>
+            <% if news.urlToImage.present? %>
+              <%= image_tag news.urlToImage, style: "height: 70px; width: 70px; object-fit: cover;" %>
+            <% else %>
+              <%= image_tag "no_image", style: "height: 70px; width: 70px; object-fit: cover;" %>
+            <% end %>
           <% end %>
-          <h6 class="ml-2"><%= news.title %></h6>
+          <h6 class="ml-2"><%= link_to news.title, news.url, target: :_blank, rel: "noopener noreferrer", class: "text-dark" %></h6>
         </div>
       </div>
       <div class="offset-md-2"></div>
