@@ -32,7 +32,9 @@ class Public::ReviewsController < ApplicationController
     redirect_to request.referer, notice: "レビューを削除しました"
   end
 
+
   private
+
 
   def review_params
     params.require(:review).permit(:comment, :star)
