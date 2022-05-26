@@ -15,9 +15,9 @@ class Public::RecipesController < ApplicationController
                       end
                     end.reverse.first(4)
     if Rails.env.development?
-      @random = Recipe.order("RANDOM()").limit(3)
+      @random_recipes = Recipe.order("RANDOM()").limit(3)
     else
-      @random = Recipe.order("RAND()").limit(3)
+      @random_recipes = Recipe.order("RAND()").limit(3)
     end
     require "news-api"
     news = News.new(ENV["NEWS_API_KEY"])

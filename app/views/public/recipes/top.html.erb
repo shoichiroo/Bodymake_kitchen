@@ -17,22 +17,13 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-          <% @random.each_with_index do |random, i| %>
+          <% @random_recipes.each_with_index do |recipe, i| %>
             <div class="carousel-item <%= "active" if i.zero? %>">
-              <%= link_to recipe_path(random) do %>
-                <%= image_tag random.image, class: "rounded slide-image" %>
+              <%= link_to recipe_path(recipe) do %>
+                <%= image_tag recipe.image, class: "rounded slide-image" %>
               <% end %>
             </div>
           <% end %>
-          <!--<div class="carousel-item active">-->
-          <!--  <%#= image_tag "bento.jpg", class: "rounded slide-image" %>-->
-          <!--</div>-->
-          <!--<div class="carousel-item">-->
-          <!--  <%#= image_tag "ryori.jpg", class: "rounded slide-image" %>-->
-          <!--</div>-->
-          <!--<div class="carousel-item">-->
-          <!--  <%#= image_tag "washoku.jpg", class: "rounded slide-image" %>-->
-          <!--</div>-->
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
