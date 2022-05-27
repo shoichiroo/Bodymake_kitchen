@@ -4,6 +4,7 @@
       <%= form_with url: searches_path, method: :get do |f| %>
         <%= f.text_field :name, placeholder: "料理名" %>
         <%= f.collection_select(:category, @categories, :id, :name, {prompt: "カテゴリー"}) %>
+        <%= f.select :calorie, [["0 ~ 200kcal", "0~200"], ["201 ~ 400kcal", "201~400"], ["401 ~ 600kcal", "401~600"], ["601 ~ 800kcal", "601~800"], ["801 ~ 1000kcal", "801~1000"]], prompt: "カロリー" %>
         <%= f.submit "検索", class: "btn btn-warning btn-{themecolor} rounded-pill" %>
       <% end %>
     </div>
