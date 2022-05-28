@@ -51,6 +51,13 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .show-image {
+    height: 450px;
+    width: 450px;
+  }
+}
+
 @media screen and (max-width: 414px) {
   .show-image {
     height: 384px;
@@ -96,6 +103,13 @@
   .index-image {
     height: 177px;
     width: 177px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .index-image {
+    height: 210px;
+    width: 210px;
   }
 }
 
@@ -151,6 +165,13 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .slide-image {
+    height: 450px;
+    width: 450px;
+  }
+}
+
 @media screen and (max-width: 414px) {
   .slide-image {
     height: 384px;
@@ -169,5 +190,98 @@
   .slide-image {
     height: 345px;
     width: 345px;
+  }
+}
+
+@media screen and (min-width:480px) and ( max-width:767px) {
+  .search-text {
+    order: 1;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .search-category {
+    order: 3;
+    width: 50%;
+  }
+
+  .search-calorie {
+    order: 2;
+    width: 49%;
+    margin-left: auto;
+  }
+
+  .search-submit {
+    order: 4;
+    margin-top: 8px;
+    margin-left: auto;
+  }
+
+  .search-submit-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+  .search-form {
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .search-text {
+    order: 1;
+    flex-basis: 40%;
+    margin-right: 8px;
+  }
+
+  .search-category {
+    order: 2;
+    flex-basis: 25%;
+    margin-right: 8px;
+  }
+
+  .search-calorie {
+    order: 3;
+    flex-basis: 15%;
+    margin-right: 8px;
+  }
+
+  .search-submit {
+    order: 4;
+    flex-basis: 10%;
+    margin-left: auto;
+  }
+
+  .search-submit-wrap {
+    order: 4;
+    flex-basis: 10%;
+    display: inline-block;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  .search-text {
+    order: 1;
+    margin-right: 8px;
+  }
+
+  .search-category {
+    order: 2;
+    margin-right: 8px;
+  }
+
+  .search-calorie {
+    order: 3;
+    margin-right: 8px;
+  }
+
+  .search-submit {
+    order: 4;
+  }
+
+  .search-submit-wrap {
+    order: 4;
+    display: inline-block;
   }
 }

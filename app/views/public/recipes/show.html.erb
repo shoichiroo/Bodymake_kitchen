@@ -169,9 +169,7 @@
         <% end %>
         </div>
         <%= link_to customer_path(@customer), class: "text-dark text-decoration-none" do %>
-          <div style="width: 100px; height: 100px;">
-            <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100%; height: 100px; object-fit: cover;" %>
-          </div>
+          <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
           <h4 class="mb-5"><%= @customer.name %></h4>
           <p><%= @customer.introduction %></p>
         <% end %>

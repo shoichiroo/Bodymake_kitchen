@@ -3,7 +3,7 @@
 
 <div class="customer-view clearfix border-bottom mb-4">
   <%= link_to customer_path(notification.visiter) do %>
-    <%= image_tag visiter.get_profile_image, size: "50x50", class: "rounded-circle img-thumbnail" %>
+    <%= image_tag visiter.get_profile_image, class: "rounded-circle img-thumbnail", style: "object-fit: cover; height: 50px; width: 50px;" %>
   <% end %>
   <%= notification_form(notification) %>
   <% if !@review.nil? %>
