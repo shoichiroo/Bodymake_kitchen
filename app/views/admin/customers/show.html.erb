@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row my-5">
     <div class="col-md-12 border border-secondary rounded">
-      <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
+      <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail customer-image" %>
       <h4 class="mb-2"><%= @customer.name %></h4>
       <p class="mt-5"><%= @customer.introduction %></p>
       <p><%= link_to "プロフィール編集", edit_admin_customer_path(@customer), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>

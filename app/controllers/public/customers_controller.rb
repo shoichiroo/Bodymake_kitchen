@@ -42,7 +42,9 @@ class Public::CustomersController < ApplicationController
     redirect_to new_customer_registration_path
   end
 
+
   private
+
 
   def customer_params
     params.require(:customer).permit(:profile_image, :name, :introduction)

@@ -3,7 +3,6 @@
   <div class="row mt-5">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
       <h4 class="text-center mb-3">ユーザー情報編集</h4>
-
       <%= form_with model: @customer do |f| %>
         <div class="form-group mb-4">
           <%= f.file_field :profile_image, accept: "image/*", class: "form-control" %>

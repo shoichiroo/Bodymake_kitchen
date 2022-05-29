@@ -44,18 +44,18 @@ class Recipe < ApplicationRecord
   end
 
 
-  # いいね通知機能
+  # お気に入り通知機能
   def create_notification_favorite!(current_customer)
-    # すでに「いいね」されているか検索
+    # すでに「お気に入り」されているか検索
     temp = Notification.where(["visiter_id = ? and visited_id = ? and recipe_id = ? and action = ? ", current_customer.id, customer_id, id, "favorite"])
-    # いいねされていない場合のみ、通知レコードを作成
+    # お気に入りされていない場合のみ、通知レコードを作成
     if temp.blank?
       notification = current_customer.active_notifications.new(
         recipe_id: id,
         visited_id: customer_id,
         action: "favorite"
       )
-      # 自分の投稿に対するいいねの場合は、通知済みとする
+      # 自分の投稿に対するお気に入りの場合は、通知済みとする
       if notification.visiter_id == notification.visited_id
         notification.checked = true
       end
@@ -63,26 +63,26 @@ class Recipe < ApplicationRecord
     end
   end
 
-  # コメント通知機能
+  # レビュー通知機能
   def create_notification_review!(current_customer, review_id)
-    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
+    # 自分以外にレビューしている人をすべて取得し、全員に通知を送る
     temp_ids = Review.select(:customer_id).where(recipe_id: id).where.not(customer_id: current_customer.id).distinct
     temp_ids.each do |temp_id|
       save_notification_review!(current_customer, review_id, temp_id["customer_id"])
     end
-    # まだ誰もコメントしていない場合は、投稿者に通知を送る
+    # まだ誰もレビューしていない場合は、投稿者に通知を送る
     save_notification_review!(current_customer, review_id, customer_id) if temp_ids.blank?
   end
 
   def save_notification_review!(current_customer, review_id, visited_id)
-    # コメントは複数回することが考えられるため、１つの投稿に複数回通知する
+    # レビューは複数回することが考えられるため、１つの投稿に複数回通知する
     notification = current_customer.active_notifications.new(
       recipe_id: id,
       review_id: review_id,
       visited_id: visited_id,
       action: "review"
     )
-    # 自分の投稿に対するコメントの場合は、通知済みとする
+    # 自分の投稿に対するレビューの場合は、通知済みとする
     if notification.visiter_id == notification.visited_id
       notification.checked = true
     end

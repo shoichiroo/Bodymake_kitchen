@@ -1,4 +1,4 @@
-# Bodymakeキッチン
+# BodymakeKitchen
 
 ## サイト概要
 ### サイトテーマ
@@ -19,7 +19,14 @@
 - 味やコストパフォーマンス等を評価する時
 
 ## 設計書
-<...>
+### ER図
+https://drive.google.com/file/d/1ZOtgV0-rAux1qL_sFgd_U3N1smzAuZGf/view?usp=sharing
+
+### テーブル定義書
+https://docs.google.com/spreadsheets/d/1RP868O1OTvfR2yYBVGQN-f0if7XxsUQFfdOu_MZu6nI/edit?usp=sharing
+
+### アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/1b527A9tT-meMQCqs0S2s-UixcvimMqGh/edit?usp=sharing&ouid=103881265655703045569&rtpof=true&sd=true
 
 ## 開発環境
 - OS：Linux(CentOS)

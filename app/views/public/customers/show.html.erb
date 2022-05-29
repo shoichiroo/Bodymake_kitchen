@@ -11,7 +11,7 @@
           <% end %>
         <% end %>
         </div>
-        <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
+        <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail customer-image" %>
         <h4 class="mb-2"><%= @customer.name %></h4>
         <span>
           <%= link_to customer_follows_path(@customer), class: "text-dark" do %>

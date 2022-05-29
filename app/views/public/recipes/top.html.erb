@@ -41,12 +41,12 @@
     <div class="col-md-7 mt-5 mt-md-0">
       <div class="border px-2 py-2">
         <% @news.each do |news| %>
-          <div class="border-bottom border-dark pb-3 mb-3" style="display: flex;">
+          <div class="border-bottom border-dark pb-3 mb-3 news-display">
             <%= link_to news.url, target: :_blank, rel: "noopener noreferrer" do %>
               <% if news.urlToImage.present? %>
-                <%= image_tag news.urlToImage, style: "height: 68px; width: 68px; object-fit: cover;" %>
+                <%= image_tag news.urlToImage, class: "top-news-image" %>
               <% else %>
-                <%= image_tag "no_image", style: "height: 68px; width: 68px; object-fit: cover;" %>
+                <%= image_tag "no_image", class: "top-news-image" %>
               <% end %>
             <% end %>
           <h6 class="ml-2"><%= link_to news.title.truncate(55), news.url, target: :_blank, rel: "noopener noreferrer", class: "text-dark" %></h6>
@@ -62,7 +62,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4><i class="fas fa-crown" style="color: #f7cb00;"></i> <strong>評価が高いレシピランキング</strong></h4>
+      <h4><i class="fas fa-crown crown-color"></i> <strong>評価が高いレシピランキング</strong></h4>
     </div>
   </div>
   <%= render "rank", recipes: @star_recipes %>
@@ -75,7 +75,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4><i class="fas fa-crown" style="color: #f7cb00;"></i> <strong>みんなのお気に入りレシピランキング</strong></h4>
+      <h4><i class="fas fa-crown crown-color"></i> <strong>みんなのお気に入りレシピランキング</strong></h4>
     </div>
   </div>
   <%= render "rank", recipes: @favorite_recipes %>
@@ -88,7 +88,7 @@
   </div>
   <div class="row mb-3">
     <div class="col-md-12">
-      <h4><i class="fas fa-crown" style="color: #f7cb00;"></i> <strong>アクセス数が多いレシピランキング</strong></h4>
+      <h4><i class="fas fa-crown crown-color"></i> <strong>アクセス数が多いレシピランキング</strong></h4>
     </div>
   </div>
   <%= render "rank", recipes: @view_count_recipes %>

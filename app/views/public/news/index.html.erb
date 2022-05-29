@@ -7,12 +7,12 @@
   <div class="row mt-5">
     <% @news.each do |news| %>
       <div class="col-md-8 offset-md-2 border-bottom border-dark pb-3 mb-3">
-        <div style="display: flex;">
+        <div class="news-display">
           <%= link_to news.url, target: :_blank, rel: "noopener noreferrer" do %>
             <% if news.urlToImage.present? %>
-              <%= image_tag news.urlToImage, style: "height: 70px; width: 70px; object-fit: cover;" %>
+              <%= image_tag news.urlToImage, class: "news-image" %>
             <% else %>
-              <%= image_tag "no_image", style: "height: 70px; width: 70px; object-fit: cover;" %>
+              <%= image_tag "no_image", class: "news-image" %>
             <% end %>
           <% end %>
           <h6 class="ml-2"><%= link_to news.title, news.url, target: :_blank, rel: "noopener noreferrer", class: "text-dark" %></h6>

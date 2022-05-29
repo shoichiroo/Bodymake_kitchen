@@ -285,3 +285,44 @@
     display: inline-block;
   }
 }
+
+.customer-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.food-menu, .btn-menu, .procedure-menu {
+  display: flex;
+  justify-content: space-between
+}
+
+.news-image {
+  height: 70px;
+  width: 70px;
+  object-fit: cover;
+}
+
+.notification-image {
+  object-fit: cover;
+  height: 50px;
+  width: 50px;
+}
+
+.form-width {
+  width: 90%;
+}
+
+.news-display {
+  display: flex;
+}
+
+.top-news-image {
+  height: 68px;
+  width: 68px;
+  object-fit: cover;
+}
+
+.crown-color {
+  color: #f7cb00;
+}

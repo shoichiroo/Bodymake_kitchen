@@ -58,7 +58,7 @@
     <div class="col-md-5">
       <h5><strong>材料(1人分)</strong></h5>
       <% @foods.each do |food| %>
-        <div class="border-bottom border-secondary" style="display: flex; justify-content: space-between">
+        <div class="border-bottom border-secondary food-menu">
           <p><%= food.name %></p>
           <p><%= food.amount %></p>
         </div>
@@ -71,7 +71,7 @@
       <div class="row my-5">
         <div class="col-md-12  border border-secondary rounded">
           <h4 class="my-3">このレシピの作成者</h4>
-          <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
+          <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail customer-image" %>
           <h4 class="mb-5"><%= @customer.name %></h4>
           <p><%= @customer.introduction %></p>
         </div>

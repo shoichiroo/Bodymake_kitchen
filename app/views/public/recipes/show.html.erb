@@ -50,7 +50,7 @@
         </div>
       </div>
       <p class="mb-5"><%= @recipe.description %></p>
-      <div style="display: flex; justify-content: space-between">
+      <div class="btn-menu">
         <% if @customer == current_customer %>
           <p><%= link_to "編集", edit_recipe_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
           <p><%= link_to "削除", recipe_path(@recipe), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
@@ -60,7 +60,7 @@
   </div>
   <div class="row mb-5">
     <div class="col-md-7 mb-5">
-      <div style="display: flex; justify-content: space-between">
+      <div class="procedure-menu">
         <h5 class="mb-4"><strong>手順</strong></h5>
         <% if @customer == current_customer %>
           <p><%= link_to "手順を編集", new_recipe_procedure_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
@@ -73,14 +73,14 @@
       <% end %>
     </div>
     <div class="col-md-5">
-      <div style="display: flex; justify-content: space-between">
+      <div class="food-menu">
         <h5 class="mb-4"><strong>材料(1人分)</strong></h5>
         <% if @customer == current_customer %>
           <p><%= link_to "材料を編集", new_recipe_food_path(@recipe), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         <% end %>
       </div>
       <% @foods.each do |food| %>
-        <div class="border-bottom border-secondary" style="display: flex; justify-content: space-between">
+        <div class="border-bottom border-secondary food-menu">
           <p><%= food.name %></p>
           <p><%= food.amount %></p>
         </div>
@@ -169,7 +169,7 @@
         <% end %>
         </div>
         <%= link_to customer_path(@customer), class: "text-dark text-decoration-none" do %>
-          <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail", style: "width: 100px; height: 100px; object-fit: cover;" %>
+          <%= image_tag @customer.get_profile_image, class: "rounded-circle img-thumbnail customer-image" %>
           <h4 class="mb-5"><%= @customer.name %></h4>
           <p><%= @customer.introduction %></p>
         <% end %>

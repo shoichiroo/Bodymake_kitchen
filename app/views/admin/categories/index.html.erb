@@ -3,7 +3,6 @@
   <div class="row">
     <div class="col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-8 offset-2">
       <h4 class="text-center my-5">カテゴリー追加</h4>
-
       <%= form_with model: @category, url: admin_categories_path do |f| %>
         <div class="form-group mb-4">
           <%= f.text_field :name, autofocus: true, placeholder: "カテゴリー名(20文字以内)", class: "form-control" %>
@@ -13,17 +12,11 @@
           <%= f.submit "新規登録", class: "btn btn-warning btn-block btn-{themecolor} rounded-pill" %>
         </div>
       <% end %>
-
       <h4 class="text-center mb-4">カテゴリー一覧</h4>
-
       <% @categories.each do |category| %>
         <div class="mb-3" style="display: flex; justify-content: space-between">
-          <p>
-            <strong><%= category.name %></strong>
-          </p>
-          <p>
-            <%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-warning btn-{themecolor} rounded-pill" %>
-          </p>
+          <p><strong><%= category.name %></strong></p>
+          <p><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
         </div>
       <% end %>
     </div>
