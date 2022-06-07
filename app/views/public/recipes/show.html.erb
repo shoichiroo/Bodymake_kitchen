@@ -87,7 +87,7 @@
       <% end %>
     </div>
   </div>
-  <% if @customer != current_customer %>
+  <% if (@customer != current_customer) && (@review_nil) %>
   <div class="row mb-5">
     <div class="col-md-12">
       <h4 class="mb-4"><strong>このレシピを評価する</strong></h4>

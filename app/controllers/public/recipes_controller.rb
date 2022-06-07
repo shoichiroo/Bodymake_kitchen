@@ -48,6 +48,7 @@ class Public::RecipesController < ApplicationController
       current_customer.view_counts.create(recipe_id: @recipe.id)
     end
     @review = Review.new
+    @review_nil = Review.find_by(recipe_id: @recipe.id, customer_id: current_customer.id).nil?
     @reviews = @recipe.reviews.page(params[:page]).per(5)
     @procedures = @recipe.procedures
     @foods = @recipe.foods

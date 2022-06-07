@@ -14,9 +14,10 @@
       <% end %>
       <h4 class="text-center mb-4">カテゴリー一覧</h4>
       <% @categories.each do |category| %>
-        <div class="mb-3" style="display: flex; justify-content: space-between">
+        <div class="mb-3 category-menu">
           <p><strong><%= category.name %></strong></p>
-          <p><%= link_to "編集する", edit_admin_category_path(category), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+          <p><%= link_to "編集", edit_admin_category_path(category), class: "btn btn-warning btn-{themecolor} rounded-pill" %></p>
+          <p><%= link_to "削除", admin_category_path(category), method: :delete, "data-confirm" => "本当に削除しますか?", class: "btn btn-danger btn-{themecolor} rounded-pill" %></p>
         </div>
       <% end %>
     </div>
